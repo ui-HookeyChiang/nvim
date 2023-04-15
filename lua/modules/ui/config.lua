@@ -67,4 +67,8 @@ function config.lualine()
   })
 end
 
+function config.smartsplits()
+  require('smart-splits').setup({})
+end
+
 return config

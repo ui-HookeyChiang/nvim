@@ -41,3 +41,8 @@ packadd({
   config = conf.lualine,
   dependencies = { 'nvim-tree/nvim-web-devicons' },
 })
+
+packadd({
+  'mrjones2014/smart-splits.nvim',
+  config = conf.smartsplits,
+})
