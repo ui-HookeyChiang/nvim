@@ -48,6 +48,14 @@ packadd({
       outline = {
         layout = 'float',
       },
+      finder = {
+        keys = {
+          toggle_or_open = '<cr>',
+          vsplit = 'v',
+          split = 'x',
+          quit = '<C-c>',
+        },
+      },
     })
   end,
 })
