@@ -8,10 +8,12 @@ packadd({
   end,
 })
 
+packadd({ 'nvimdev/coman.nvim', event = 'BufRead' })
+
 packadd({
   'nvimdev/template.nvim',
-  dev = true,
   cmd = 'Template',
+  ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
   config = conf.template_nvim,
 })
 

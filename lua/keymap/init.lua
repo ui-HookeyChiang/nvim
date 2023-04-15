@@ -10,8 +10,12 @@ map.n({
   ['ga'] = cmd('Lspsaga code_action'),
   ['gr'] = cmd('Lspsaga rename'),
   ['gd'] = cmd('Lspsaga peek_definition'),
-  ['gp'] = cmd('Lspsaga goto_definition'),
+  ['gD'] = cmd('Lspsaga goto_definition'),
+  ['gr'] = cmd('Lspsaga rename'),
   ['gh'] = cmd('Lspsaga finder'),
+  ['gf'] = cmd('lua vim.lsp.buf.format()'),
+  ['gs'] = cmd('lua vim.lsp.buf.references()'),
+  ['gS'] = cmd('lua vim.lsp.buf.signature_help()'),
   ['<Leader>o'] = cmd('Lspsaga outline'),
   ['<Leader>dw'] = cmd('Lspsaga show_workspace_diagnostics'),
   ['<Leader>db'] = cmd('Lspsaga show_buf_diagnostics'),
@@ -20,7 +24,7 @@ map.n({
   ['<Leader>sl'] = cmd('SessionLoad'),
   -- FzfLua
   ['<Leader>b'] = cmd('FzfLua buffers'),
-  ['<Leader>fa'] = cmd('FzfLua live_grep_native'),
+  ['<Leader>fw'] = cmd('FzfLua live_grep_native'),
   ['<Leader>fs'] = cmd('FzfLua grep_cword'),
   ['<Leader>ff'] = cmd('FzfLua files'),
   ['<Leader>fh'] = cmd('FzfLua helptags'),
@@ -33,6 +37,11 @@ map.n({
   --gitsign
   [']g'] = cmd('lua require"gitsigns".next_hunk()<CR>'),
   ['[g'] = cmd('lua require"gitsigns".prev_hunk()<CR>'),
+  --rapid
+  ['<leader>c'] = cmd('Rapid'),
+  -- hop.nvim
+  ['f'] = cmd('HopWordAC'),
+  ['F'] = cmd('HopWordBC'),
 })
 
 vim.keymap.set({ 'i', 'n' }, '<C-x><C-f>', function()

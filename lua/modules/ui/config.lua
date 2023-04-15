@@ -55,4 +55,16 @@ function config.gitsigns()
   })
 end
 
+function config.tokyonight()
+  vim.cmd.colorscheme('tokyonight')
+end
+
+function config.lualine()
+  require('lualine').setup({
+    options = {
+      theme = 'nord',
+    },
+  })
+end
+
 return config

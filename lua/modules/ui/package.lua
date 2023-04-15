@@ -22,11 +22,22 @@ packadd({
 
 packadd({
   'nvimdev/indentmini.nvim',
-  event = 'BufEnter */*',
+  event = { 'BufEnter' },
   config = function()
     vim.opt.listchars:append({ tab = '  ' })
     require('indentmini').setup({
       only_current = true,
     })
   end,
+})
+
+packadd({
+  'folke/tokyonight.nvim',
+  config = conf.tokyonight,
+})
+
+packadd({
+  'nvim-lualine/lualine.nvim',
+  config = conf.lualine,
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
 })

@@ -10,13 +10,32 @@ packadd({
       },
     })
     require('modules.lsp.config')
+    require('mason').setup()
+    require('mason-lspconfig').setup({
+      ensure_installed = {
+        'dockerls',
+        'pyright',
+        'bashls',
+        'jsonls',
+        'tsserver',
+        'gopls',
+        'lua_ls',
+        'rust_analyzer',
+        'clangd',
+        'sqlls',
+        'marksman',
+      },
+    })
   end,
+  dependencies = {
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'williamboman/mason.nvim' },
+  },
 })
 
 packadd({
   'nvimdev/lspsaga.nvim',
   event = 'LspAttach',
-  dev = true,
   config = function()
     require('lspsaga').setup({
       ui = { use_nerd = false },
@@ -32,3 +51,4 @@ packadd({
     })
   end,
 })
+

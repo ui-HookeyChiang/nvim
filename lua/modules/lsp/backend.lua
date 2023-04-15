@@ -1,14 +1,30 @@
+local M = {}
 local lspconfig = require('lspconfig')
 
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local client = vim.lsp.get_clients({ id = args.data.client_id })[1]
-    client.server_capabilities.semanticTokensProvider = nil
-  end,
-})
+M.capabilities = vim.tbl_deep_extend(
+  'force',
+  vim.lsp.protocol.make_client_capabilities(),
+  require('epo').register_cap()
+)
+
+function M._attach(client, bufnr)
+  vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+  -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+  client.server_capabilities.semanticTokensProvider = nil
+  local orignal = vim.notify
+  local mynotify = function(msg, level, opts)
+    if msg == 'No code actions available' or msg:find('overly') then
+      return
+    end
+    orignal(msg, level, opts)
+  end
+  vim.notify = mynotify
+end
 
 lspconfig.gopls.setup({
   cmd = { 'gopls', 'serve' },
+  on_attach = M._attach,
+  capabilities = M.capabilities,
   settings = {
     gopls = {
       usePlaceholders = true,
@@ -26,30 +42,41 @@ lspconfig.gopls.setup({
 })
 
 lspconfig.lua_ls.setup({
-  on_init = function(client)
-    local path = client.workspace_folders and client.workspace_folders[1].name
-    local fs_stat = vim.uv.fs_stat
-    if path and (fs_stat(path .. '/.luarc.json') or fs_stat(path .. '/.luarc.jsonc')) then
-      return
-    end
-    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-      runtime = { version = 'LuaJIT' },
-      completion = { callSnippet = 'Replace' },
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME,
-          '${3rd}/luv/library',
+  on_attach = M._attach,
+  capabilities = M.capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        unusedLocalExclude = { '_*' },
+        globals = { 'vim' },
+        disable = {
+          'luadoc-miss-see-name',
+          'undefined-field',
         },
       },
-    })
-  end,
-  settings = { Lua = {} },
+      runtime = {
+        version = 'LuaJIT',
+        -- path = vim.split(package.path, ';'),
+      },
+      workspace = {
+        library = {
+          vim.env.VIMRUNTIME .. '/lua',
+          '${3rd}/busted/library',
+          '${3rd}/luv/library',
+        },
+        checkThirdParty = 'Disable',
+      },
+      completion = {
+        callSnippet = 'Replace',
+      },
+    },
+  },
 })
 
 lspconfig.clangd.setup({
   cmd = { 'clangd', '--background-index' },
-  init_options = { fallbackFlags = { '-std=c++23' } },
+  on_attach = M._attach,
+  capabilities = M.capabilities,
   root_dir = function(fname)
     return lspconfig.util.root_pattern(unpack({
       --reorder
@@ -64,6 +91,8 @@ lspconfig.clangd.setup({
 })
 
 lspconfig.rust_analyzer.setup({
+  on_attach = M._attach,
+  capabilities = M.capabilities,
   settings = {
     ['rust-analyzer'] = {
       imports = {
@@ -88,14 +117,16 @@ local servers = {
   'pyright',
   'bashls',
   'zls',
-  'cmake',
   'jsonls',
-  'ts_ls',
-  'eslint',
+  'tsserver',
 }
+-- lspconfig.pylsp.setup({ settings = { pylsp = { plugins = { pylint = { enabled = true } } } } })
 
 for _, server in ipairs(servers) do
-  lspconfig[server].setup({})
+  lspconfig[server].setup({
+    on_attach = M._attach,
+    capabilities = M.capabilities,
+  })
 end
 
 vim.lsp.handlers['workspace/diagnostic/refresh'] = function(_, _, ctx)
@@ -104,3 +135,5 @@ vim.lsp.handlers['workspace/diagnostic/refresh'] = function(_, _, ctx)
   vim.diagnostic.reset(ns, bufnr)
   return true
 end
+
+return M
