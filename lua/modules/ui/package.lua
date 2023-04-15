@@ -1,11 +1,11 @@
 local conf = require('modules.ui.config')
 
-packadd({
-  'nvimdev/nightsky.vim',
-  config = function()
-    vim.cmd.colorscheme('nightsky')
-  end,
-})
+-- packadd({
+--   'nvimdev/nightsky.vim',
+--   config = function()
+--     vim.cmd.colorscheme('nightsky')
+--   end,
+-- })
 
 packadd({
   'nvimdev/dashboard-nvim',
@@ -14,11 +14,12 @@ packadd({
   dependencies = { 'nvim-tree/nvim-web-devicons' },
 })
 
-packadd({
-  'nvimdev/whiskyline.nvim',
-  event = 'BufEnter',
-  config = conf.whisky,
-})
+-- packadd({
+--   'nvimdev/whiskyline.nvim',
+--   event = 'BufEnter',
+--   config = conf.whisky,
+--   dependencies = { 'nvim-tree/nvim-web-devicons' },
+-- })
 
 packadd({
   'lewis6991/gitsigns.nvim',
@@ -28,8 +29,19 @@ packadd({
 
 packadd({
   'nvimdev/indentmini.nvim',
-  event = 'BufEnter */*',
+  event = { 'BufEnter' },
   config = function()
     require('indentmini').setup()
   end,
+})
+
+packadd({
+  'folke/tokyonight.nvim',
+  config = conf.tokyonight,
+})
+
+packadd({
+  'nvim-lualine/lualine.nvim',
+  config = conf.lualine,
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
 })

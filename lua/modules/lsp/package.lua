@@ -9,24 +9,45 @@ packadd({
     'cpp',
     'zig',
     'python',
+    'proto',
     'javascript',
     'javascriptreact',
     'typescript',
     'typescriptreact',
     'json',
+    'markdown',
   },
   config = function()
     local i = '■'
     vim.diagnostic.config({ signs = { text = { i, i, i, i } } })
     require('modules.lsp.backend')
     require('modules.lsp.frontend')
+    require('mason').setup()
+    require('mason-lspconfig').setup({
+      ensure_installed = {
+        'dockerls',
+        'pyright',
+        'bashls',
+        'jsonls',
+        'tsserver',
+        'gopls',
+        'lua_ls',
+        'rust_analyzer',
+        'clangd',
+        'sqlls',
+        'marksman',
+      },
+    })
   end,
+  dependencies = {
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'williamboman/mason.nvim' },
+  },
 })
 
 packadd({
   'nvimdev/lspsaga.nvim',
   event = 'LspAttach',
-  dev = true,
   config = function()
     require('lspsaga').setup({
       symbol_in_winbar = {
@@ -46,7 +67,6 @@ packadd({
 packadd({
   'nvimdev/epo.nvim',
   event = 'LspAttach',
-  dev = true,
   config = function()
     require('epo').setup()
   end,

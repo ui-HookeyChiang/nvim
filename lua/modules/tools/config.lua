@@ -27,7 +27,10 @@ function config.guard()
   ft('rust'):fmt('rustfmt')
   ft('typescript', 'javascript', 'typescriptreact', 'javascriptreact'):fmt('prettier')
 
-  require('guard').setup()
+  require('guard').setup({
+    fmt_on_save = false,
+    lsp_as_default_formatter = true,
+  })
 end
 
 return config

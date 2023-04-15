@@ -10,8 +10,12 @@ map.n({
   ['ga'] = cmd('Lspsaga code_action'),
   ['gr'] = cmd('Lspsaga rename'),
   ['gd'] = cmd('Lspsaga peek_definition'),
-  ['gp'] = cmd('Lspsaga goto_definition'),
+  ['gD'] = cmd('Lspsaga goto_definition'),
+  ['gr'] = cmd('Lspsaga rename'),
   ['gh'] = cmd('Lspsaga finder'),
+  ['gf'] = cmd('lua vim.lsp.buf.format()'),
+  ['gs'] = cmd('lua vim.lsp.buf.references()'),
+  ['gS'] = cmd('lua vim.lsp.buf.signature_help()'),
   ['<Leader>o'] = cmd('Lspsaga outline'),
   ['<Leader>dw'] = cmd('Lspsaga show_workspace_diagnostics'),
   ['<Leader>db'] = cmd('Lspsaga show_buf_diagnostics'),
@@ -20,13 +24,12 @@ map.n({
   ['<Leader>sl'] = cmd('SessionLoad'),
   -- Telescope
   ['<Leader>a'] = cmd('Telescope app'),
-  ['<Leader>fa'] = cmd('Telescope live_grep'),
+  ['<Leader>fw'] = cmd('Telescope live_grep'),
   ['<Leader>fs'] = cmd('Telescope grep_string'),
   ['<Leader>ff'] = cmd(
     'Telescope find_files cwd=$HOME/workspace' .. ' find_command=rg,--ignore,--hidden,--files'
   ),
   ['<Leader>fg'] = cmd('Telescope git_files'),
-  ['<Leader>fw'] = cmd('Telescope grep_string'),
   ['<Leader>fh'] = cmd('Telescope help_tags'),
   ['<Leader>fo'] = cmd('Telescope oldfiles'),
   ['<Leader>gc'] = cmd('Telescope git_commits'),
@@ -38,6 +41,9 @@ map.n({
   ['[g'] = cmd('lua require"gitsigns".prev_hunk()<CR>'),
   --rapid
   ['<leader>c'] = cmd('Rapid'),
+  -- hop.nvim
+  ['f'] = cmd('HopWordAC'),
+  ['F'] = cmd('HopWordBC'),
 })
 
 --template.nvim

@@ -41,7 +41,7 @@ opt.laststatus = 3
 opt.list = true
 
 --eol:¬
-opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←,'
+opt.listchars = 'tab:» ,nbsp:+,trail:·,extends:→,precedes:←,'
 opt.pumblend = 10
 opt.winblend = 0
 opt.undofile = true
@@ -95,9 +95,9 @@ function _G.show_stc()
   return ('%s%%=%s%s'):format(stc_diagnostic(), show_break(), stc_gitsign())
 end
 
-vim.opt.stc = '%!v:lua.show_stc()'
+opt.stc = '%!v:lua.show_stc()'
 
-if vim.uv.os_uname().sysname == 'Darwin' then
+if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
     name = 'macOS-clipboard',
     copy = {

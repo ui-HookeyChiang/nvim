@@ -9,6 +9,9 @@ map.n({
   ['<C-n>'] = cmd('bn'),
   ['<C-p>'] = cmd('bp'),
   ['<C-q>'] = cmd('qa!'),
+  ['<C-e>'] = cmd('quit'),
+  ['<]b>'] = cmd('bn'),
+  ['<[b>'] = cmd('bp'),
   --window
   ['<C-h>'] = '<C-w>h',
   ['<C-l>'] = '<C-w>l',
@@ -19,10 +22,13 @@ map.n({
   ['[t'] = cmd('vs | vertical resize -5 | terminal'),
   [']t'] = cmd('set splitbelow | sp | set nosplitbelow | resize -5 | terminal'),
   ['<C-x>t'] = cmd('tabnew | terminal'),
+  ['<S-Up>'] = cmd('move . -2'),
+  ['<S-Down>'] = cmd('move . +1'),
 })
 
 map.i({
   ['<C-d>'] = '<C-o>diw',
+  ['<C-w>'] = '<Esc>dwa',
   ['<C-b>'] = '<Left>',
   ['<C-f>'] = '<Right>',
   ['<C-a>'] = '<Esc>^i',

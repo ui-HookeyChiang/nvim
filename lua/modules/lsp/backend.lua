@@ -34,6 +34,9 @@ lspconfig.gopls.setup({
       },
       -- semanticTokens = true,
       staticcheck = true,
+      env = {
+        GOFLAGS = '-tags=windows,linux,testing,debug',
+      },
     },
   },
 })
@@ -114,6 +117,8 @@ local servers = {
   'pyright',
   'bashls',
   'zls',
+  'jsonls',
+  'tsserver',
 }
 -- lspconfig.pylsp.setup({ settings = { pylsp = { plugins = { pylint = { enabled = true } } } } })
 
