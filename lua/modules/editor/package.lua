@@ -39,3 +39,8 @@ packadd({
     end, 0)
   end,
 })
+
+packadd({
+  'booperlv/nvim-gomove',
+  config = conf.gomove,
+})

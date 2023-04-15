@@ -26,6 +26,13 @@ map.n({
   ['<S-Down>'] = cmd('move . +1'),
 })
 
+map.v({
+  ['<C-Left>'] = '<Plug>GoVSDLeft',
+  ['<C-Down>'] = '<Plug>GoVSDDown',
+  ['<C-Up>'] = '<Plug>GoVSDUp',
+  ['<C-Right>'] = '<Plug>GoVSDRight',
+})
+
 map.i({
   ['<C-d>'] = '<C-o>diw',
   ['<C-w>'] = '<Esc>dwa',
