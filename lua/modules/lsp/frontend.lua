@@ -4,6 +4,7 @@ local capabilities = require('modules.lsp.backend').capabilities
 
 lspconfig.jsonls.setup({
   on_attach = _attach,
+  capabilities = capabilities,
 })
 
 -- npm i -g typescript
@@ -16,6 +17,7 @@ lspconfig.tsserver.setup({
 -- npm i -g vscode-langservers-extracted
 lspconfig.eslint.setup({
   filetypes = { 'javascriptreact', 'typescriptreact' },
+  capabilities = capabilities,
   on_attach = function(client, bufnr)
     _attach(client)
     vim.api.nvim_create_autocmd('BufWritePre', {
