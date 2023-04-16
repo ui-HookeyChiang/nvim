@@ -25,11 +25,12 @@ packadd({
         'sqlls',
         'marksman',
       },
+      automatic_installation = true,
     })
   end,
   dependencies = {
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason.nvim', build = ':MasonUpdate' },
   },
 })
 

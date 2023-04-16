@@ -117,8 +117,6 @@ local servers = {
   'pyright',
   'bashls',
   'zls',
-  'jsonls',
-  'tsserver',
 }
 -- lspconfig.pylsp.setup({ settings = { pylsp = { plugins = { pylint = { enabled = true } } } } })
 
