@@ -15,6 +15,7 @@ packadd({
     'typescript',
     'typescriptreact',
     'json',
+    'jsonc',
     'markdown',
   },
   config = function()
@@ -22,6 +23,7 @@ packadd({
     vim.diagnostic.config({ signs = { text = { i, i, i, i } } })
     require('modules.lsp.backend')
     require('modules.lsp.frontend')
+
     require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = {
@@ -37,11 +39,12 @@ packadd({
         'sqlls',
         'marksman',
       },
+      automatic_installation = true,
     })
   end,
   dependencies = {
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason.nvim', build = ':MasonUpdate' },
   },
 })
 
