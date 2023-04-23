@@ -33,14 +33,42 @@ map.n({
   ['<Leader>fc'] = cmd('FzfLua files cwd=$HOME/.config'),
   -- flybuf.nvim
   ['<Leader>j'] = cmd('FlyBuf'),
-  --gitsign
-  [']g'] = cmd('lua require"gitsigns".next_hunk()<CR>'),
-  ['[g'] = cmd('lua require"gitsigns".prev_hunk()<CR>'),
+
   --rapid
   ['<leader>c'] = cmd('Rapid'),
+
+  --gitsign
+  [']g'] = cmd('lua require"gitsigns".next_hunk()'),
+  ['[g'] = cmd('lua require"gitsigns".prev_hunk()'),
+  ['<leader>gs'] = cmd('lua require"gitsigns".stage_hunk()'),
+  ['<leader>gu'] = cmd('lua require"gitsigns".undo_stage_hunk()'),
+  ['<leader>gr'] = cmd('lua require"gitsigns".reset_hunk()'),
+  ['<leader>gp'] = cmd('lua require"gitsigns".preview_hunk()'),
+  ['<leader>gb'] = cmd('lua require"gitsigns".blame_line()'),
+
   -- hop.nvim
   ['f'] = cmd('HopWordAC'),
   ['F'] = cmd('HopWordBC'),
+
+  -- splits
+  ['<C-Left>'] = cmd('SmartCursorMoveLeft'),
+  ['<C-Down>'] = cmd('SmartCursorMoveDown'),
+  ['<C-Up>'] = cmd('SmartCursorMoveUp'),
+  ['<C-Right>'] = cmd('SmartCursorMoveRight'),
+  ['<A-Left>'] = cmd('SmartResizeLeft 3'),
+  ['<A-Down>'] = cmd('SmartResizeDown 3'),
+  ['<A-Up>'] = cmd('SmartResizeUp 3'),
+  ['<A-Right>'] = cmd('SmartResizeRight 3'),
+  ['<S-Down>'] = '<Plug>GoNSMDown',
+  ['<S-Up>'] = '<Plug>GoNSMUp',
+})
+
+map.v({
+  -- splits
+  ['<C-Left>'] = '<Plug>GoVSDLeft',
+  ['<C-Down>'] = '<Plug>GoVSDDown',
+  ['<C-Up>'] = '<Plug>GoVSDUp',
+  ['<C-Right>'] = '<Plug>GoVSDRight',
 })
 
 vim.keymap.set({ 'i', 'n' }, '<C-x><C-f>', function()
