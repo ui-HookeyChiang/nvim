@@ -40,3 +40,35 @@ packadd({
   cmd = { 'SessionSave', 'SessionLoad', 'SessionDelete' },
   opts = true,
 })
+
+packadd({
+  'nvimdev/rapid.nvim',
+  cmd = 'Rapid',
+  config = function()
+    require('rapid').setup()
+  end,
+})
+
+packadd({
+  'nvimdev/nerdicons.nvim',
+  cmd = 'NerdIcons',
+  opts = true,
+})
+
+packadd({
+  'ojroques/nvim-osc52',
+  config = function()
+    require('osc52').setup()
+    local function copy()
+      if vim.v.event.operator == 'y' and vim.v.event.regname == '' then
+        require('osc52').copy_register('"')
+      end
+    end
+
+    local augroup = vim.api.nvim_create_augroup('osc52', {})
+    vim.api.nvim_create_autocmd('TextYankPost', {
+      group = augroup,
+      callback = copy,
+    })
+  end,
+})
