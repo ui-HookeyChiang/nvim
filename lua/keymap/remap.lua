@@ -24,6 +24,8 @@ map.n({
   ['<C-x>t'] = cmd('tabnew | terminal'),
   ['<S-Up>'] = cmd('move . -2'),
   ['<S-Down>'] = cmd('move . +1'),
+  ['<]c>'] = cmd('cn'),
+  ['<[c>'] = cmd('cp'),
 })
 
 map.i({
