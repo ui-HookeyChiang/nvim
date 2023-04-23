@@ -24,21 +24,6 @@ map.n({
   ['<C-x>t'] = cmd('tabnew | terminal'),
   ['<S-Up>'] = cmd('move . -2'),
   ['<S-Down>'] = cmd('move . +1'),
-  ['<C-Left>'] = cmd('SmartCursorMoveLeft'),
-  ['<C-Down>'] = cmd('SmartCursorMoveDown'),
-  ['<C-Up>'] = cmd('SmartCursorMoveUp'),
-  ['<C-Right>'] = cmd('SmartCursorMoveRight'),
-  ['<A-Left>'] = cmd('SmartResizeLeft 3'),
-  ['<A-Down>'] = cmd('SmartResizeDown 3'),
-  ['<A-Up>'] = cmd('SmartResizeUp 3'),
-  ['<A-Right>'] = cmd('SmartResizeRight 3'),
-})
-
-map.v({
-  ['<C-Left>'] = '<Plug>GoVSDLeft',
-  ['<C-Down>'] = '<Plug>GoVSDDown',
-  ['<C-Up>'] = '<Plug>GoVSDUp',
-  ['<C-Right>'] = '<Plug>GoVSDRight',
 })
 
 map.i({
