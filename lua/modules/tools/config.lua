@@ -37,4 +37,11 @@ function config.guard()
   })
 end
 
+function config.hop()
+  local hop = require('hop')
+  hop.setup({
+    keys = 'qazwsxedcrfvtgb',
+  })
+end
+
 return config

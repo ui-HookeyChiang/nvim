@@ -4,7 +4,10 @@ packadd({
   'nvimdev/flybuf.nvim',
   cmd = 'FlyBuf',
   config = function()
-    require('flybuf').setup({})
+    require('flybuf').setup({
+      quit = '<C-c>', -- quit flybuf window
+      delete = 'c',   -- delete marked buffers or buffers which cursor in
+    })
   end,
 })
 
@@ -72,3 +75,5 @@ packadd({
     })
   end,
 })
+
+packadd({ 'smoka7/hop.nvim', event = 'BufRead', config = conf.hop })
