@@ -64,6 +64,10 @@ map.n({
 })
 
 map.v({
+  -- hop.nvim
+  ['f'] = cmd('HopWordAC'),
+  ['F'] = cmd('HopWordBC'),
+
   -- splits
   ['<C-Left>'] = '<Plug>GoVSDLeft',
   ['<C-Down>'] = '<Plug>GoVSDDown',
