@@ -23,7 +23,7 @@ map.n({
   ['<Leader>ss'] = cmd('SessionSave'),
   ['<Leader>sl'] = cmd('SessionLoad'),
   -- Telescope
-  ['<Leader>a'] = cmd('Telescope app'),
+  ['<Leader>fa'] = cmd('Telescope app'),
   ['<Leader>fw'] = cmd('Telescope live_grep'),
   ['<Leader>fs'] = cmd('Telescope grep_string'),
   ['<Leader>ff'] = cmd(
@@ -32,7 +32,7 @@ map.n({
   ['<Leader>fg'] = cmd('Telescope git_files'),
   ['<Leader>fh'] = cmd('Telescope help_tags'),
   ['<Leader>fo'] = cmd('Telescope oldfiles'),
-  ['<Leader>gc'] = cmd('Telescope git_commits'),
+  ['<Leader>fc'] = cmd('Telescope git_commits'),
   ['<Leader>fd'] = cmd('Telescope dotfiles'),
   -- flybuf.nvim
   ['<Leader>j'] = cmd('FlyBuf'),
