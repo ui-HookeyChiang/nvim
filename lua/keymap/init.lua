@@ -3,6 +3,10 @@ local map = require('core.keymap')
 local cmd = map.cmd
 
 map.n({
+  -- lazy
+  ['<Leader>pu'] = cmd('Lazy update'),
+  ['<Leader>pi'] = cmd('Lazy install'),
+
   -- Lspsaga
   ['[e'] = ':Lspsaga diagnostic_jump_next<CR>',
   [']e'] = ':Lspsaga diagnostic_jump_prev<CR>',
