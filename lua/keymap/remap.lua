@@ -29,17 +29,23 @@ map.n({
 })
 
 map.i({
-  ['<C-d>'] = '<C-o>diw',
-  ['<C-w>'] = '<Esc>dwa',
-  ['<C-b>'] = '<Left>',
-  ['<C-f>'] = '<Right>',
-  ['<C-a>'] = '<Esc>^i',
+  -- Delete whole word
+  ['<C-w>'] = '<C-o>diw',
+  -- Delete to the end of the word
+  ['<C-f>'] = '<C-o>dw',
+  -- Delete to the start of the word
+  ['<C-g>'] = '<C-o>db',
+  -- Align general delete and backspace
+  ['<C-d>'] = '<Del>',
+  ['<C-h>'] = '<BS>',
+  -- Delete to the end of the line
   ['<C-k>'] = '<C-o>d$',
-  ['<C-s>'] = '<ESC>:w<CR>',
-  ['<C-n>'] = '<Down>',
-  ['<C-p>'] = '<Up>',
+  ['<C-u>'] = '<C-o>u',
+  ['<C-r>'] = '<C-o><C-r>',
+  --['<C-n>'] = '<Down>',
+  --['<C-p>'] = '<Up>',
   --down/up
-  ['<C-j>'] = '<C-o>o',
+  ['<C-o>'] = '<C-o>o',
   ['<C-l>'] = '<C-o>O',
   --@see https://github.com/neovim/neovim/issues/16416
   ['<C-C>'] = '<C-C>',
