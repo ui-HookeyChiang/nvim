@@ -51,8 +51,8 @@ map.n({
   ['<leader>gb'] = cmd('lua require"gitsigns".blame_line()'),
 
   -- hop.nvim
-  ['f'] = cmd('HopWordAC'),
-  ['F'] = cmd('HopWordBC'),
+  ['s'] = cmd('HopWordAC'),
+  ['x'] = cmd('HopWordBC'),
 
   -- splits
   ['<C-Left>'] = cmd('SmartCursorMoveLeft'),
@@ -63,20 +63,22 @@ map.n({
   ['<A-Down>'] = cmd('SmartResizeDown 3'),
   ['<A-Up>'] = cmd('SmartResizeUp 3'),
   ['<A-Right>'] = cmd('SmartResizeRight 3'),
-  ['<S-Down>'] = '<Plug>GoNSMDown',
-  ['<S-Up>'] = '<Plug>GoNSMUp',
+})
+
+map.i({
+  -- hop.nvim
+  ['<C-f>'] = cmd('HopWordAC'),
+  ['<C-v>'] = cmd('HopWordBC'),
 })
 
 map.v({
   -- hop.nvim
-  ['f'] = cmd('HopWordAC'),
-  ['F'] = cmd('HopWordBC'),
+  ['s'] = cmd('HopWordAC'),
+  ['x'] = cmd('HopWordBC'),
 
-  -- splits
-  ['<C-Left>'] = '<Plug>GoVSDLeft',
+  -- duplicate then move
   ['<C-Down>'] = '<Plug>GoVSDDown',
   ['<C-Up>'] = '<Plug>GoVSDUp',
-  ['<C-Right>'] = '<Plug>GoVSDRight',
 })
 
 vim.keymap.set({ 'i', 'n' }, '<C-x><C-f>', function()
