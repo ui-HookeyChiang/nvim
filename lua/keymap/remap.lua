@@ -26,6 +26,13 @@ map.n({
   ['<S-Down>'] = cmd('move . +1'),
   ['<]c>'] = cmd('cn'),
   ['<[c>'] = cmd('cp'),
+  ['<A-b>'] = 'b',
+  ['<A-f>'] = 'w',
+})
+
+map.v({
+  ['<A-b>'] = 'b',
+  ['<A-f>'] = 'w',
 })
 
 map.i({
@@ -51,6 +58,8 @@ map.i({
   ['<C-C>'] = '<C-C>',
   --@see https://vim.fandom.com/wiki/Moving_lines_up_or_down
   ['<A-j>'] = '<Esc>:m .+1<CR>==gi',
+  ['<A-b>'] = '<C-o>b',
+  ['<A-f>'] = '<C-o>w',
 })
 
 map.c({

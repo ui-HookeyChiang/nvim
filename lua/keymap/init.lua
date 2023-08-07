@@ -67,8 +67,8 @@ map.n({
 
 map.i({
   -- hop.nvim
-  ['<C-f>'] = cmd('HopWordAC'),
-  ['<C-v>'] = cmd('HopWordBC'),
+  ['<C-s>'] = cmd('HopWordAC'),
+  ['<C-x>'] = cmd('HopWordBC'),
 })
 
 map.v({
@@ -76,7 +76,7 @@ map.v({
   ['s'] = cmd('HopWordAC'),
   ['x'] = cmd('HopWordBC'),
 
-  -- duplicate then move
+  -- duplcate then move
   ['<C-Down>'] = '<Plug>GoVSDDown',
   ['<C-Up>'] = '<Plug>GoVSDUp',
 })
