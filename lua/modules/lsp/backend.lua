@@ -113,10 +113,29 @@ lspconfig.rust_analyzer.setup({
   },
 })
 
+lspconfig.pylsp.setup({
+  on_attach = M._attach,
+  capabilities = M.capabilities,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'workspace',
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
+
 local servers = {
-  'pyright',
+  'dockerls',
   'bashls',
   'zls',
+  'marksman',
+  'sqlls',
+  'vimls',
+  'html',
+  'yamlls',
 }
 -- lspconfig.pylsp.setup({ settings = { pylsp = { plugins = { pylint = { enabled = true } } } } })
 

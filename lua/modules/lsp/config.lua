@@ -84,6 +84,18 @@ lspconfig.rust_analyzer.setup({
   },
 })
 
+lspconfig.pylsp.setup({
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'workspace',
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
+
 local servers = {
   'pyright',
   'bashls',
