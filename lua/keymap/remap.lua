@@ -47,6 +47,7 @@ map.i({
   ['<C-h>'] = '<BS>',
   -- Delete to the end of the line
   ['<C-k>'] = '<C-o>d$',
+  ['<C-j>'] = '<C-o>J',
   ['<C-u>'] = '<C-o>u',
   ['<C-r>'] = '<C-o><C-r>',
   --['<C-n>'] = '<Down>',
