@@ -10,13 +10,17 @@ packadd({
     'zig',
     'python',
     'proto',
+    'sql',
     'javascript',
     'javascriptreact',
     'typescript',
     'typescriptreact',
     'json',
     'jsonc',
-    'markdown',
+    'md',
+    'html',
+    'vim',
+    'yaml',
   },
   config = function()
     local i = '■'
@@ -28,7 +32,7 @@ packadd({
     require('mason-lspconfig').setup({
       ensure_installed = {
         'dockerls',
-        'pyright',
+        'pylsp',
         'bashls',
         'jsonls',
         'tsserver',
@@ -38,13 +42,17 @@ packadd({
         'clangd',
         'sqlls',
         'marksman',
+        'html',
+        'vimls',
+        'yamlls',
       },
       automatic_installation = true,
     })
+    pylsp_postinst()
   end,
   dependencies = {
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'williamboman/mason.nvim', build = ':MasonUpdate' },
+    { 'williamboman/mason.nvim',          build = ':MasonUpdate' },
   },
 })
 
@@ -82,3 +90,34 @@ packadd({
     require('epo').setup()
   end,
 })
+
+function pylsp_postinst()
+  local pylsp = require("mason-registry").get_package("python-lsp-server")
+  pylsp:on("install:success", function()
+    -- Install pylsp plugins...
+    local function mason_package_path(package)
+      local path = vim.fn.resolve(vim.fn.stdpath("data") .. "/mason/packages/" .. package)
+      return path
+    end
+
+    local path = mason_package_path("python-lsp-server")
+    local command = path .. "/venv/bin/pip"
+    local args = {
+      "install",
+      "pylsp-rope",
+      "python-lsp-black",
+      "pyflakes",
+      "python-lsp-ruff",
+      "pyls-flake8",
+      "sqlalchemy-stubs",
+    }
+
+    require("plenary.job")
+        :new({
+          command = command,
+          args = args,
+          cwd = path,
+        })
+        :start()
+  end)
+end
