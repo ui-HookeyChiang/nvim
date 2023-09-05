@@ -49,7 +49,7 @@ opt.foldlevelstart = 99
 opt.foldmethod = 'marker'
 
 opt.splitright = true
-opt.wrap = false
+opt.wrap = true
 
 opt.number = true
 opt.signcolumn = 'yes'
