@@ -87,7 +87,9 @@ packadd({
   'nvimdev/epo.nvim',
   event = 'LspAttach',
   config = function()
-    require('epo').setup()
+    require('epo').setup({
+          signature = true,
+    })
   end,
 })
 
