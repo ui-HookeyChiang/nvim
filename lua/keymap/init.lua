@@ -78,10 +78,6 @@ map.v({
   -- hop.nvim
   ['s'] = cmd('HopWordAC'),
   ['x'] = cmd('HopWordBC'),
-
-  -- duplcate then move
-  ['<C-Down>'] = '<Plug>GoVSDDown',
-  ['<C-Up>'] = '<Plug>GoVSDUp',
 })
 
 --template.nvim
