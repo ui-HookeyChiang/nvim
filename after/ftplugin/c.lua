@@ -5,8 +5,7 @@ local v = name and name:find('neovim') and 2 or 4
 vim.opt_local.commentstring = '//%s'
 vim.opt_local.autoindent = true
 vim.opt_local.smartindent = true
-vim.opt_local.shiftwidth = v
-vim.opt_local.softtabstop = v
-vim.opt_local.tabstop = v
+vim.opt_local.shiftwidth = v -- 8 kernel
+vim.opt_local.softtabstop = v -- 4
+vim.opt_local.tabstop = v -- 8 kernel
 vim.opt_local.expandtab = true --false?
-
