@@ -31,7 +31,7 @@ map.n({
   ['<Leader>fw'] = cmd('Telescope live_grep'),
   ['<Leader>fs'] = cmd('Telescope grep_string'),
   ['<Leader>ff'] = cmd(
-    'Telescope find_files cwd=$HOME/workspace' .. ' find_command=rg,--ignore,--hidden,--files'
+    'Telescope find_files find_command=rg,--ignore,--hidden,--files'
   ),
   ['<Leader>fg'] = cmd('Telescope git_files'),
   ['<Leader>fh'] = cmd('Telescope help_tags'),
