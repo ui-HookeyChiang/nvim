@@ -9,7 +9,7 @@ map.n({
   ['<C-n>'] = cmd('bn'),
   ['<C-p>'] = cmd('bp'),
   ['<C-q>'] = cmd('qa!'),
-  ['<C-e>'] = cmd('quit'),
+  ['<C-e>'] = cmd('bd'),
   ['<]b>'] = cmd('bn'),
   ['<[b>'] = cmd('bp'),
   --window
