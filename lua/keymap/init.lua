@@ -38,6 +38,7 @@ map.n({
   ['<Leader>fo'] = cmd('Telescope oldfiles'),
   ['<Leader>fc'] = cmd('Telescope git_commits'),
   ['<Leader>fd'] = cmd('Telescope dotfiles'),
+  ['<Leader>fb'] = cmd('Telescope buffers'),
   -- flybuf.nvim
   ['<Leader>j'] = cmd('FlyBuf'),
 
