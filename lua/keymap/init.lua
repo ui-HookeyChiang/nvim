@@ -38,9 +38,9 @@ map.n({
   ['<Leader>fo'] = cmd('Telescope oldfiles'),
   ['<Leader>fc'] = cmd('Telescope git_commits'),
   ['<Leader>fd'] = cmd('Telescope dotfiles'),
-  ['<Leader>fb'] = cmd('Telescope buffers'),
+  ['<Leader>j'] = cmd('Telescope buffers'),
   -- flybuf.nvim
-  ['<Leader>j'] = cmd('FlyBuf'),
+  -- ['<Leader>j'] = cmd('FlyBuf'),
 
   --gitsign
   [']g'] = cmd('lua require"gitsigns".next_hunk()<CR>'),

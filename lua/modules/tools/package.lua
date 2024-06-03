@@ -1,15 +1,15 @@
 local conf = require('modules.tools.config')
 
-packadd({
-  'nvimdev/flybuf.nvim',
-  cmd = 'FlyBuf',
-  config = function()
-    require('flybuf').setup({
-      quit = '<C-c>', -- quit flybuf window
-      delete = 'c',   -- delete marked buffers or buffers which cursor in
-    })
-  end,
-})
+-- packadd({
+--   'nvimdev/flybuf.nvim',
+--   cmd = 'FlyBuf',
+--   config = function()
+--     require('flybuf').setup({
+--       quit = '<C-c>', -- quit flybuf window
+--       delete = 'c',   -- delete marked buffers or buffers which cursor in
+--     })
+--   end,
+-- })
 
 packadd({ 'nvimdev/coman.nvim', event = 'BufRead' })
 
