@@ -27,6 +27,7 @@ packadd({
         'html',
         'vimls',
         'yamlls',
+        'texlab',
       },
       automatic_installation = true,
     })
