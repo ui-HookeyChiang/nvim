@@ -34,6 +34,13 @@ function M.nvim_treesitter()
       'vimdoc',
       'vim',
       'cmake',
+      'bibtex',
+      'latex',
+      'kconfig',
+      'git_config',
+      'git_rebase',
+      'gitcommit',
+      'gitignore',
     },
     highlight = {
       enable = true,

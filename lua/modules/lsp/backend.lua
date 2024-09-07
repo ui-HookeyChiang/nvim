@@ -136,6 +136,7 @@ local servers = {
   'vimls',
   'html',
   'yamlls',
+  'texlab',
 }
 -- lspconfig.pylsp.setup({ settings = { pylsp = { plugins = { pylint = { enabled = true } } } } })
 
