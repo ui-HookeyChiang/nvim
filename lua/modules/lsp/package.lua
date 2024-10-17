@@ -17,7 +17,7 @@ packadd({
         'pylsp',
         'bashls',
         'jsonls',
-        'tsserver',
+        'ts_ls',
         'gopls',
         'lua_ls',
         'rust_analyzer',
