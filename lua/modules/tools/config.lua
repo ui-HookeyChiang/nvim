@@ -6,7 +6,6 @@ function config.template_nvim()
     author = 'glepnir',
     email = 'glephunter@gmail.com',
   })
-  require('telescope').load_extension('find_template')
 end
 
 function config.guard()
