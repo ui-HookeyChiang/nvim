@@ -28,6 +28,9 @@ packadd({
         'vimls',
         'yamlls',
         'texlab',
+        'zls',
+        'cmake',
+        'eslint',
       },
       automatic_installation = true,
     })
