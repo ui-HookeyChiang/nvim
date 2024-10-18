@@ -97,13 +97,19 @@ lspconfig.pylsp.setup({
 })
 
 local servers = {
-  'pyright',
   'bashls',
   'zls',
   'cmake',
   'jsonls',
   'ts_ls',
   'eslint',
+  'dockerls',
+  'marksman',
+  'sqlls',
+  'vimls',
+  'html',
+  'yamlls',
+  'texlab',
 }
 
 for _, server in ipairs(servers) do
