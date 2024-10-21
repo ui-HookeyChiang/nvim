@@ -39,9 +39,9 @@ map.i({
   -- Delete whole word
   ['<C-w>'] = '<C-o>diw',
   -- Delete to the end of the word
-  -- ['<C-f>'] = '<C-o>dw',
+  ['<C-g>'] = '<C-o>dw',
   -- Delete to the start of the word
-  ['<C-g>'] = '<C-o>db',
+  -- ['<C-g>'] = '<C-o>db',
   -- Align general delete and backspace
   ['<C-d>'] = '<Del>',
   ['<C-h>'] = '<BS>',
