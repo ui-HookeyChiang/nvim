@@ -63,6 +63,10 @@ map.n({
   ['<A-Down>'] = cmd('SmartResizeDown 3'),
   ['<A-Up>'] = cmd('SmartResizeUp 3'),
   ['<A-Right>'] = cmd('SmartResizeRight 3'),
+  ['<A-h>'] = cmd('SmartResizeLeft 3'),
+  ['<A-j>'] = cmd('SmartResizeDown 3'),
+  ['<A-k>'] = cmd('SmartResizeUp 3'),
+  ['<A-l>'] = cmd('SmartResizeRight 3'),
 })
 
 map.i({
