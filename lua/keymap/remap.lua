@@ -39,7 +39,7 @@ map.i({
   -- Delete whole word
   ['<C-w>'] = '<C-o>diw',
   -- Delete to the end of the word
-  ['<C-f>'] = '<C-o>dw',
+  -- ['<C-f>'] = '<C-o>dw',
   -- Delete to the start of the word
   ['<C-g>'] = '<C-o>db',
   -- Align general delete and backspace
@@ -61,6 +61,8 @@ map.i({
   ['<A-j>'] = '<Esc>:m .+1<CR>==gi',
   ['<A-b>'] = '<C-o>b',
   ['<A-f>'] = '<C-o>w',
+  ['<C-b>'] = '<Left>',
+  ['<C-f>'] = '<Right>',
 })
 
 map.c({
