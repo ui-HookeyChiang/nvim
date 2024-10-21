@@ -38,7 +38,7 @@ packadd({
   end,
   dependencies = {
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'williamboman/mason.nvim',          build = ':MasonUpdate' },
+    { 'williamboman/mason.nvim', build = ':MasonUpdate' },
   },
 })
 
