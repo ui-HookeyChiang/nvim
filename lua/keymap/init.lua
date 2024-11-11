@@ -52,7 +52,7 @@ map.n({
 
   -- hop.nvim
   ['s'] = cmd('HopWordAC'),
-  ['x'] = cmd('HopWordBC'),
+  ['S'] = cmd('HopWordBC'),
 
   -- splits
   ['<C-Left>'] = cmd('SmartCursorMoveLeft'),
@@ -76,13 +76,13 @@ map.n({
 map.i({
   -- hop.nvim
   ['<C-s>'] = cmd('HopWordAC'),
-  ['<C-x>'] = cmd('HopWordBC'),
+  ['<C-S>'] = cmd('HopWordBC'),
 })
 
 map.v({
   -- hop.nvim
   ['s'] = cmd('HopWordAC'),
-  ['x'] = cmd('HopWordBC'),
+  ['S'] = cmd('HopWordBC'),
 })
 
 vim.keymap.set({ 'i', 'n' }, '<C-x><C-f>', function()
