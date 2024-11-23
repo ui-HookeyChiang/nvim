@@ -10,7 +10,7 @@ map.n({
   -- Lspsaga
   ['[e'] = cmd('Lspsaga diagnostic_jump_next'),
   [']e'] = cmd('Lspsaga diagnostic_jump_prev'),
-  ['K'] = cmd('Lspsaga hover_doc'),
+  ['gk'] = cmd('Lspsaga hover_doc'),
   ['ga'] = cmd('Lspsaga code_action'),
   ['gd'] = cmd('Lspsaga peek_definition'),
   ['gD'] = cmd('Lspsaga goto_definition'),
@@ -36,7 +36,7 @@ map.n({
   ['<Leader>gc'] = cmd('FzfLua git_commits'),
   ['<Leader>fc'] = cmd('FzfLua files cwd=$HOME/.config'),
   -- flybuf.nvim
-  ['<Leader>j'] = cmd('FlyBuf'),
+  -- ['<Leader>j'] = cmd('FlyBuf'),
 
   --rapid
   ['<leader>c'] = cmd('Rapid'),
@@ -67,10 +67,11 @@ map.n({
   ['<A-Down>'] = cmd('SmartResizeDown 3'),
   ['<A-Up>'] = cmd('SmartResizeUp 3'),
   ['<A-Right>'] = cmd('SmartResizeRight 3'),
-  ['<A-h>'] = cmd('SmartResizeLeft 3'),
-  ['<A-j>'] = cmd('SmartResizeDown 3'),
-  ['<A-k>'] = cmd('SmartResizeUp 3'),
-  ['<A-l>'] = cmd('SmartResizeRight 3'),
+  ['<S-h>'] = cmd('SmartResizeLeft 3'),
+  ['<S-j>'] = cmd('SmartResizeDown 3'),
+  ['<S-k>'] = cmd('SmartResizeUp 3'),
+  ['<S-l>'] = cmd('SmartResizeRight 3'),
+  ['<leader>j'] = cmd('join!'),
 })
 
 map.i({
