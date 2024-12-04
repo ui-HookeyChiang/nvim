@@ -35,6 +35,7 @@ function M.nvim_treesitter()
       'vim',
       'cmake',
       'bibtex',
+      -- comment on arm64 linux
       'latex',
       'kconfig',
       'git_config',
