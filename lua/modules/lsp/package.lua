@@ -1,6 +1,14 @@
 packadd({
   'neovim/nvim-lspconfig',
   ft = program_ft,
+  -- uncomment for arm64 clangd
+  -- opts = {
+  --   servers = {
+  --     clangd = {
+  --       mason = false,
+  --     },
+  --   },
+  -- },
   config = function()
     vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
     local i = '●'
@@ -21,6 +29,7 @@ packadd({
         'gopls',
         'lua_ls',
         'rust_analyzer',
+        -- comment for arm64
         'clangd',
         'sqlls',
         'marksman',
@@ -38,7 +47,7 @@ packadd({
   end,
   dependencies = {
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'williamboman/mason.nvim', build = ':MasonUpdate' },
+    { 'williamboman/mason.nvim',          build = ':MasonUpdate' },
   },
 })
 
