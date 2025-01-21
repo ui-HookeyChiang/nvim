@@ -76,16 +76,17 @@ function _G.show_stc()
   local stc_diagnostic = get_signs('Diagnostic')
   local stc_gitsign = get_signs('GitSign')
 
-  local function show_break()
+  local function show_break_rnu()
     if vim.v.virtnum > 0 then
       return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '↳'
     elseif vim.v.virtnum < 0 then
       return ''
     else
-      return vim.v.lnum
+      return ('%s,%s'):format(vim.v.lnum, vim.v.relnum)
     end
   end
-  return ('%s%%=%s%s'):format(stc_diagnostic(), show_break(), stc_gitsign())
+
+  return ('%s%%=%s%s'):format(stc_diagnostic(), show_break_rnu(), stc_gitsign())
 end
 
 opt.stc = '%!v:lua.show_stc()'
