@@ -81,8 +81,10 @@ function _G.show_stc()
       return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '↳'
     elseif vim.v.virtnum < 0 then
       return ''
+    elseif vim.v.relnum == 0 then
+      return ('%s'):format(vim.v.lnum)
     else
-      return ('%s,%s'):format(vim.v.lnum, vim.v.relnum)
+      return ('%s'):format(vim.v.relnum)
     end
   end
 
