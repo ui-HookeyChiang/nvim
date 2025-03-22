@@ -2,7 +2,6 @@ local conf = require('modules.tools.config')
 
 packadd({
   'nvimdev/template.nvim',
-  dev = true,
   cmd = 'Template',
   config = conf.template_nvim,
 })
@@ -28,7 +27,6 @@ packadd({
 packadd({
   'nvimdev/fnpairs.nvim',
   event = 'InsertEnter',
-  dev = true,
 })
 
 packadd({
