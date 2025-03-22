@@ -18,10 +18,13 @@ _G.program_ft = {
   'json',
   'cmake',
   'html',
-  'markdown',
-  'text',
-  'help',
-  'css',
+  'proto',
+  'sql',
+  'jsonc',
+  'md',
+  'vim',
+  'yaml',
+  'tex',
 }
 _G.is_mac = vim.uv.os_uname().sysname == 'Darwin'
 
