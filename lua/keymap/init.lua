@@ -8,14 +8,17 @@ map.n({
   ['<Leader>pi'] = cmd('Lazy install'),
 
   -- Lspsaga
-  ['[d'] = cmd('Lspsaga diagnostic_jump_next'),
-  [']d'] = cmd('Lspsaga diagnostic_jump_prev'),
-  ['K'] = cmd('Lspsaga hover_doc'),
+  ['[e'] = cmd('Lspsaga diagnostic_jump_next'),
+  [']e'] = cmd('Lspsaga diagnostic_jump_prev'),
+  ['gk'] = cmd('Lspsaga hover_doc'),
   ['ga'] = cmd('Lspsaga code_action'),
-  ['gr'] = cmd('Lspsaga rename'),
   ['gd'] = cmd('Lspsaga peek_definition'),
-  ['gp'] = cmd('Lspsaga goto_definition'),
+  ['gD'] = cmd('Lspsaga goto_definition'),
+  ['gr'] = cmd('Lspsaga rename'),
   ['gh'] = cmd('Lspsaga finder'),
+  ['gf'] = cmd('lua vim.lsp.buf.format()'),
+  ['gs'] = cmd('lua vim.lsp.buf.references()'),
+  ['gS'] = cmd('lua vim.lsp.buf.signature_help()'),
   ['<Leader>o'] = cmd('Lspsaga outline'),
   -- dbsession
   ['<Leader>ss'] = cmd('SessionSave'),
