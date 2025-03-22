@@ -19,7 +19,37 @@ packadd({
       },
     })
     require('modules.lsp.config')
+    require('mason').setup()
+    require('mason-lspconfig').setup({
+      ensure_installed = {
+        'dockerls',
+        'basedpyright',
+        'ruff',
+        'bashls',
+        'jsonls',
+        'ts_ls',
+        'gopls',
+        'lua_ls',
+        'rust_analyzer',
+        -- comment for arm64
+        'clangd',
+        'sqlls',
+        'marksman',
+        'html',
+        'vimls',
+        'yamlls',
+        'texlab',
+        'zls',
+        'cmake',
+        'eslint',
+      },
+      automatic_installation = true,
+    })
   end,
+  dependencies = {
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'williamboman/mason.nvim', build = ':MasonUpdate' },
+  },
 })
 
 packadd({
