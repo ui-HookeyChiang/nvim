@@ -22,7 +22,6 @@ packadd({
 
 packadd({
   'nvimdev/dired.nvim',
-  dev = true,
   cmd = 'Dired',
 })
 
@@ -35,4 +34,15 @@ packadd({
       only_current = true,
     })
   end,
+})
+
+packadd({
+  'folke/tokyonight.nvim',
+  config = conf.tokyonight,
+})
+
+packadd({
+  'nvim-lualine/lualine.nvim',
+  config = conf.lualine,
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
 })
