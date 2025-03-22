@@ -34,6 +34,15 @@ map.n({
   ['<Leader>gc'] = cmd('FzfLua git_commits'),
   ['<Leader>fc'] = cmd('FzfLua files cwd=$HOME/.config'),
 
+  --gitsign
+  [']g'] = cmd('lua require"gitsigns".next_hunk()'),
+  ['[g'] = cmd('lua require"gitsigns".prev_hunk()'),
+  ['<leader>gs'] = cmd('lua require"gitsigns".stage_hunk()'),
+  ['<leader>gu'] = cmd('lua require"gitsigns".undo_stage_hunk()'),
+  ['<leader>gr'] = cmd('lua require"gitsigns".reset_hunk()'),
+  ['<leader>gp'] = cmd('lua require"gitsigns".preview_hunk()'),
+  ['<leader>gb'] = cmd('lua require"gitsigns".blame_line()'),
+
   -- hop.nvim
   ['s'] = cmd('HopWordAC'),
   ['<A-s>'] = cmd('HopWordBC'),
