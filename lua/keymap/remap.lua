@@ -9,6 +9,9 @@ map.n({
   ['<C-n>'] = cmd('bn'),
   ['<C-p>'] = cmd('bp'),
   ['<C-q>'] = cmd('qa!'),
+  ['<C-e>'] = cmd('bd'),
+  ['<]b>'] = cmd('bn'),
+  ['<[b>'] = cmd('bp'),
   --window
   -- ['<C-h>'] = '<C-w>h',
   -- ['<C-l>'] = '<C-w>l',
@@ -20,24 +23,47 @@ map.n({
   [']t'] = cmd('set splitbelow | sp | set nosplitbelow | resize -5 | terminal'),
   ['<C-x>t'] = cmd('tabnew | terminal'),
   ['gV'] = '`[v`]',
+  ['<S-Up>'] = cmd('move . -2'),
+  ['<S-Down>'] = cmd('move . +1'),
+  ['<]c>'] = cmd('cn'),
+  ['<[c>'] = cmd('cp'),
+  ['<A-b>'] = 'b',
+  ['<A-f>'] = 'e',
+})
+
+map.v({
+  ['<A-b>'] = 'b',
+  ['<A-f>'] = 'e',
 })
 
 map.i({
-  ['<C-d>'] = '<C-o>diw',
-  ['<C-b>'] = '<Left>',
-  ['<C-f>'] = '<Right>',
-  ['<C-a>'] = '<Esc>^i',
+  -- Delete whole word
+  ['<C-w>'] = '<C-o>diw',
+  -- Delete to the end of the word
+  ['<C-g>'] = '<C-o>dw',
+  -- Delete to the start of the word
+  -- ['<C-g>'] = '<C-o>db',
+  -- Align general delete and backspace
+  ['<C-d>'] = '<Del>',
+  ['<C-h>'] = '<BS>',
+  -- Delete to the end of the line
   ['<C-k>'] = '<C-o>d$',
-  ['<C-s>'] = '<ESC>:w<CR>',
+  ['<C-j>'] = '<C-o>J',
+  ['<C-u>'] = '<C-o>u',
+  ['<C-r>'] = '<C-o><C-r>',
   ['<C-n>'] = '<Down>',
   ['<C-p>'] = '<Up>',
   --down/up
-  ['<C-j>'] = '<C-o>o',
+  ['<C-o>'] = '<C-o>o',
   ['<C-l>'] = '<C-o>O',
   --@see https://github.com/neovim/neovim/issues/16416
   ['<C-C>'] = '<C-C>',
   --@see https://vim.fandom.com/wiki/Moving_lines_up_or_down
   ['<A-j>'] = '<Esc>:m .+1<CR>==gi',
+  ['<A-b>'] = '<C-o>b',
+  ['<A-f>'] = '<C-o>e',
+  ['<C-b>'] = '<Left>',
+  ['<C-f>'] = '<Right>',
 })
 
 map.i('<C-K>', function()
