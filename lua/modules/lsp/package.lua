@@ -1,6 +1,14 @@
 packadd({
   'neovim/nvim-lspconfig',
   ft = program_ft,
+  -- uncomment for arm64 clangd
+  -- opts = {
+  --   servers = {
+  --     clangd = {
+  --       mason = false,
+  --     },
+  --   },
+  -- },
   config = function()
     -- vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
     local i = '●'
@@ -17,13 +25,11 @@ packadd({
 packadd({
   'nvimdev/phoenix.nvim',
   ft = program_ft,
-  dev = true,
 })
 
 packadd({
   'nvimdev/lspsaga.nvim',
   event = 'LspAttach',
-  dev = true,
   config = function()
     require('lspsaga').setup({
       ui = { use_nerd = false },
@@ -35,6 +41,14 @@ packadd({
       },
       outline = {
         layout = 'float',
+      },
+      finder = {
+        keys = {
+          toggle_or_open = '<cr>',
+          vsplit = 'v',
+          split = 'x',
+          quit = '<C-c>',
+        },
       },
     })
   end,
