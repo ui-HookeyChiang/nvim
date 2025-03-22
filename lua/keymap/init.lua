@@ -34,9 +34,21 @@ map.n({
   ['<Leader>gc'] = cmd('FzfLua git_commits'),
   ['<Leader>fc'] = cmd('FzfLua files cwd=$HOME/.config'),
 
-  --gitsign
-  [']g'] = cmd('lua require"gitsigns".next_hunk()<CR>'),
-  ['[g'] = cmd('lua require"gitsigns".prev_hunk()<CR>'),
+  -- hop.nvim
+  ['s'] = cmd('HopWordAC'),
+  ['<A-s>'] = cmd('HopWordBC'),
+})
+
+map.i({
+  -- hop.nvim
+  ['<C-s>'] = cmd('HopWordAC'),
+  ['<A-s>'] = cmd('HopWordBC'),
+})
+
+map.v({
+  -- hop.nvim
+  ['s'] = cmd('HopWordAC'),
+  ['<A-s>'] = cmd('HopWordBC'),
 })
 
 map.ni('<C-X><C-f>', cmd('Dired'))
