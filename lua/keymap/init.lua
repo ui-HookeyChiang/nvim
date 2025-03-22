@@ -25,7 +25,7 @@ map.n({
   ['<Leader>sl'] = cmd('SessionLoad'),
   -- FzfLua
   ['<Leader>b'] = cmd('FzfLua buffers'),
-  ['<Leader>fa'] = cmd('FzfLua live_grep_native'),
+  ['<Leader>fw'] = cmd('FzfLua live_grep_native'),
   ['<Leader>fs'] = cmd('FzfLua grep_cword'),
   ['<Leader>ff'] = cmd('FzfLua files'),
   ['<Leader>fh'] = cmd('FzfLua helptags'),
@@ -33,8 +33,7 @@ map.n({
   ['<Leader>fg'] = cmd('FzfLua git_files'),
   ['<Leader>gc'] = cmd('FzfLua git_commits'),
   ['<Leader>fc'] = cmd('FzfLua files cwd=$HOME/.config'),
-  -- flybuf.nvim
-  ['<Leader>j'] = cmd('FlyBuf'),
+
   --gitsign
   [']g'] = cmd('lua require"gitsigns".next_hunk()<CR>'),
   ['[g'] = cmd('lua require"gitsigns".prev_hunk()<CR>'),
