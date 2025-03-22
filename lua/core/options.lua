@@ -53,17 +53,37 @@ opt.spelloptions = 'camel'
 opt.textwidth = 80
 opt.colorcolumn = '+0'
 
-if vim.uv.os_uname().sysname == 'Darwin' then
-  vim.g.clipboard = {
-    name = 'macOS-clipboard',
-    copy = {
-      ['+'] = 'pbcopy',
-      ['*'] = 'pbcopy',
-    },
-    paste = {
-      ['+'] = 'pbpaste',
-      ['*'] = 'pbpaste',
-    },
-    cache_enabled = 0,
-  }
+local function get_signs(name)
+  return function()
+    local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+    local it = vim
+      .iter(vim.api.nvim_buf_get_extmarks(bufnr, -1, 0, -1, { details = true, type = 'sign' }))
+      :find(function(item)
+        return item[2] == vim.v.lnum - 1
+          and item[4].sign_hl_group
+          and item[4].sign_hl_group:find(name)
+      end)
+    return not it and '  ' or ('%%#%s#%s%%*'):format(it[4].sign_hl_group, it[4].sign_text)
+  end
 end
+
+function _G.show_stc()
+  local stc_diagnostic = get_signs('Diagnostic')
+  local stc_gitsign = get_signs('GitSign')
+
+  local function show_break_rnu()
+    if vim.v.virtnum > 0 then
+      return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '↳'
+    elseif vim.v.virtnum < 0 then
+      return ''
+    elseif vim.v.relnum == 0 then
+      return ('%s'):format(vim.v.lnum)
+    else
+      return ('%s'):format(vim.v.relnum)
+    end
+  end
+
+  return ('%s%%=%s%s'):format(stc_diagnostic(), show_break_rnu(), stc_gitsign())
+end
+
+opt.stc = '%!v:lua.show_stc()'
