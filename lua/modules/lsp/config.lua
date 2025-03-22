@@ -19,6 +19,9 @@ lspconfig.gopls.setup({
       },
       -- semanticTokens = true,
       staticcheck = true,
+      env = {
+        GOFLAGS = '-tags=windows,linux,testing,debug',
+      },
     },
   },
 })
@@ -100,6 +103,13 @@ local servers = {
   'eslint',
   'tailwindcss',
   'cssls',
+  'dockerls',
+  'marksman',
+  'sqlls',
+  'vimls',
+  'html',
+  'yamlls',
+  'texlab',
 }
 
 for _, server in ipairs(servers) do
