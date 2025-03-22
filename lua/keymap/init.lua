@@ -37,6 +37,25 @@ map.n({
   -- hop.nvim
   ['s'] = cmd('HopWordAC'),
   ['<A-s>'] = cmd('HopWordBC'),
+
+  -- splits
+  ['<C-Left>'] = cmd('SmartCursorMoveLeft'),
+  ['<C-Down>'] = cmd('SmartCursorMoveDown'),
+  ['<C-Up>'] = cmd('SmartCursorMoveUp'),
+  ['<C-Right>'] = cmd('SmartCursorMoveRight'),
+  ['<C-h>'] = cmd('SmartCursorMoveLeft'),
+  ['<C-j>'] = cmd('SmartCursorMoveDown'),
+  ['<C-k>'] = cmd('SmartCursorMoveUp'),
+  ['<C-l>'] = cmd('SmartCursorMoveRight'),
+  ['<A-Left>'] = cmd('SmartResizeLeft 3'),
+  ['<A-Down>'] = cmd('SmartResizeDown 3'),
+  ['<A-Up>'] = cmd('SmartResizeUp 3'),
+  ['<A-Right>'] = cmd('SmartResizeRight 3'),
+  ['<S-h>'] = cmd('SmartResizeLeft 3'),
+  ['<S-j>'] = cmd('SmartResizeDown 3'),
+  ['<S-k>'] = cmd('SmartResizeUp 3'),
+  ['<S-l>'] = cmd('SmartResizeRight 3'),
+  ['<leader>j'] = cmd('join!'),
 })
 
 map.i({
