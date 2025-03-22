@@ -55,4 +55,20 @@ function config.gitsigns()
   })
 end
 
+function config.tokyonight()
+  vim.cmd.colorscheme('tokyonight')
+end
+
+function config.lualine()
+  require('lualine').setup({
+    options = {
+      theme = 'nord',
+    },
+  })
+end
+
+function config.smartsplits()
+  require('smart-splits').setup({})
+end
+
 return config
