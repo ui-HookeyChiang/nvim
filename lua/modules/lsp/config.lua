@@ -81,12 +81,21 @@ lspconfig.rust_analyzer.setup({
         prefix = 'self',
       },
       cargo = {
+        allFeatures = true,
         buildScripts = {
           enable = true,
         },
       },
       procMacro = {
         enable = true,
+      },
+      checkOnSave = {
+        command = 'clippy', -- ← 儲存時自動用 clippy 檢查
+      },
+      inlayHints = {
+        typeHints = { enable = true },
+        parameterHints = { enable = true },
+        chainingHints = { enable = true },
       },
     },
   },
