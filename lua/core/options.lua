@@ -33,6 +33,10 @@ opt.list = true
 
 --eol:¬
 opt.listchars = 'tab:» ,nbsp:+,trail:·,extends:→,precedes:←,'
+
+-- Make trailing spaces more visible with red background
+vim.api.nvim_set_hl(0, 'Whitespace', { bg = '#ff6b6b', fg = '#ffffff' })
+
 opt.undofile = true
 
 opt.smarttab = true
