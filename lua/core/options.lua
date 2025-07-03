@@ -35,7 +35,14 @@ opt.list = true
 opt.listchars = 'tab:» ,nbsp:+,trail:·,extends:→,precedes:←,'
 
 -- Make trailing spaces more visible with red background
-vim.api.nvim_set_hl(0, 'Whitespace', { bg = '#ff6b6b', fg = '#ffffff' })
+vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg = '#ff6b6b', fg = '#ffffff' })
+-- Autocommand to highlight trailing whitespace in all buffers
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  pattern = '*',
+  callback = function()
+    vim.fn.matchadd('TrailingWhitespace', [[\s\+$]])
+  end,
+})
 
 opt.undofile = true
 
