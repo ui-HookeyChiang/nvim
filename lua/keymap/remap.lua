@@ -64,6 +64,7 @@ map.i({
   ['<A-f>'] = '<C-o>e',
   ['<C-b>'] = '<Left>',
   ['<C-f>'] = '<Right>',
+  ['<C-a>'] = '<Home>',
 })
 
 map.i('<C-K>', function()
