@@ -5,7 +5,7 @@ packadd({
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
     ---@type Provider
-    provider = 'claude', -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+    provider = 'claude-code', -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
     ---@alias Mode "agentic" | "legacy"
     ---@type Mode
     mode = 'agentic', -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
