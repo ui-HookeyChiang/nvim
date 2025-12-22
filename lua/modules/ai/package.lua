@@ -14,14 +14,6 @@ packadd({
     -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
     auto_suggestions_provider = 'claude',
     providers = {
-      claude = {
-        endpoint = 'https://api.anthropic.com',
-        model = 'claude-sonnet-4-5-20250929',
-        extra_request_body = {
-          temperature = 0.75,
-          max_tokens = 20480,
-        },
-      },
       windows = {
         width = 38.181,
       },
