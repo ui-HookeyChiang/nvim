@@ -4,7 +4,7 @@ local cmd = map.cmd
 map.n({
   ['j'] = 'gj',
   ['k'] = 'gk',
-  ['<C-s>'] = cmd('write'),
+  ['<C-w>'] = cmd('write'),
   -- ['<C-x>k'] = cmd(vim.bo.buftype == 'terminal' and 'q!' or 'BufKeepDelete'),
   ['<C-n>'] = cmd('bn'),
   ['<C-p>'] = cmd('bp'),

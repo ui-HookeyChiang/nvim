@@ -44,7 +44,7 @@ map.n({
   ['<leader>gb'] = cmd('lua require"gitsigns".blame_line()'),
 
   -- hop.nvim
-  ['s'] = cmd('HopWordAC'),
+  ['<C-s>'] = cmd('HopWordAC'),
   ['<A-s>'] = cmd('HopWordBC'),
 
   -- splits
