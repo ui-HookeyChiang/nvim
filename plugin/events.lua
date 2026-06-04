@@ -86,7 +86,7 @@ au('UIEnter', {
       require('private.indent')
       require('private.compile')
 
-      if vim.version().minor >= 12 then
+      if vim.version().minor >= 13 and pcall(require, 'vim._core.ui2') then
         require('vim._core.ui2').enable({ msg = { target = 'cmd' } })
       end
 
@@ -158,7 +158,12 @@ au('BufWritePre', {
   end,
   desc = 'remove tail space',
 })
-vim.cmd([[
- autocmd CmdlineChanged [:\?] call wildtrigger()
- set wildmode=noinsert:lastused,full
-]])
+-- `wildmode=noinsert` + `wildtrigger()` cmdline completion is Neovim 0.13+ only.
+-- Probe whether this build accepts the `noinsert` wildmode value before using it.
+local has_noinsert = vim.fn.exists('*wildtrigger') == 1
+  and pcall(vim.api.nvim_set_option_value, 'wildmode', 'noinsert:lastused,full', {})
+if has_noinsert then
+  vim.cmd([[autocmd CmdlineChanged [:\?] call wildtrigger()]])
+else
+  vim.o.wildmode = 'lastused:full'
+end

@@ -35,7 +35,9 @@ o.cursorline = true
 o.showmode = false
 o.shortmess = 'aoOTIcF'
 o.scrolloff = 4
-o.scrolloffpad = 1
+if vim.fn.exists('&scrolloffpad') == 1 then
+  o.scrolloffpad = 1
+end
 o.sidescrolloff = 5
 o.ruler = false
 o.showtabline = 0
