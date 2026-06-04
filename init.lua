@@ -45,6 +45,15 @@ g.loaded_netrwPlugin = 1
 g.loaded_matchparen = 1
 
 local o = vim.o
+
+-- Set an option only if this Neovim build knows it. glepnir's config tracks
+-- nightly and uses options (pummaxwidth, pumborder, winborder, smoothscroll,
+-- scrolloffpad, ...) that older / stable builds reject with "Unknown option".
+local function oset(name, value)
+  if vim.fn.exists('&' .. name) == 1 then
+    o[name] = value
+  end
+end
 o.hidden = true
 o.magic = true
 o.virtualedit = 'block'
@@ -62,16 +71,14 @@ o.cursorline = true
 o.showmode = false
 o.shortmess = 'aoOTIcF'
 o.scrolloff = 4
-if vim.fn.exists('&scrolloffpad') == 1 then
-  o.scrolloffpad = 1
-end
+oset('scrolloffpad', 1)
 o.sidescrolloff = 5
 o.ruler = false
 o.showtabline = 0
 o.showcmd = false
 o.pumheight = 15
-o.pummaxwidth = 30
-o.pumborder = 'rounded'
+oset('pummaxwidth', 30)
+oset('pumborder', 'rounded')
 o.list = true
 --eol:¬
 o.listchars = 'tab:» ,nbsp:+,trail:·,extends:→,precedes:←,'
@@ -90,7 +97,7 @@ o.foldtext = ''
 o.foldlevelstart = 99
 o.undofile = true
 o.linebreak = true
-o.smoothscroll = true
+oset('smoothscroll', true)
 o.smarttab = true
 o.expandtab = true
 o.autoindent = true
@@ -101,7 +108,7 @@ o.number = true
 o.signcolumn = 'yes'
 o.textwidth = 80
 o.colorcolumn = '+0'
-o.winborder = 'rounded'
+oset('winborder', 'rounded')
 o.splitright = true
 -- reset to 2 in dashboard.lua lnum 273
 o.laststatus = 0
