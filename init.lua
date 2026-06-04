@@ -11,6 +11,7 @@ do
     vim.fn.expand('~/.local/share/nvim/mason/bin'),
     vim.fn.expand('~/.cargo/bin'),
     vim.fn.expand('~/.local/bin'),
+    vim.fn.expand('~/go/bin'), -- go toolchain (gopls shells out to `go`)
   }
   local sep = vim.fn.has('win32') == 1 and ';' or ':'
   local seen = {}
