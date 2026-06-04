@@ -2,6 +2,32 @@ local g = vim.g
 vim.loader.enable()
 g.mapleader = vim.keycode('<space>')
 
+-- This config enables LSP servers by name via vim.lsp.enable and expects the
+-- server binaries on $PATH. Reuse the binaries already installed by mason (and
+-- cargo: stylua / tree-sitter) without pulling in the mason plugin itself.
+do
+  local extra = {
+    vim.fn.stdpath('data') .. '/mason/bin',
+    vim.fn.expand('~/.local/share/nvim/mason/bin'),
+    vim.fn.expand('~/.cargo/bin'),
+    vim.fn.expand('~/.local/bin'),
+  }
+  local sep = vim.fn.has('win32') == 1 and ';' or ':'
+  local seen = {}
+  for entry in (vim.env.PATH or ''):gmatch('[^' .. sep .. ']+') do
+    seen[entry] = true
+  end
+  local prepend = {}
+  for _, dir in ipairs(extra) do
+    if vim.fn.isdirectory(dir) == 1 and not seen[dir] then
+      prepend[#prepend + 1] = dir
+    end
+  end
+  if #prepend > 0 then
+    vim.env.PATH = table.concat(prepend, sep) .. sep .. vim.env.PATH
+  end
+end
+
 g.loaded_gzip = 1
 g.loaded_tar = 1
 g.loaded_tarPlugin = 1

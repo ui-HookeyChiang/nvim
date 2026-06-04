@@ -70,6 +70,7 @@ vim.lsp.enable({
   'rust_analyzer',
   'basedpyright',
   'ruff',
+  'gopls',
   'zls',
   'cmake',
   'tsls',
