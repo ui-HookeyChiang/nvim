@@ -31,6 +31,12 @@ if fname:match('neovim') or fname:match('nvim') then
   end, {})
 elseif fname:match('vim') then
   vim.opt_local.listchars = { tab = '  ' }
+elseif require('private.kernel_style').is_kernel_source(fname) then
+  -- Linux kernel coding style: hard tabs, width 8
+  vim.opt_local.expandtab = false
+  vim.opt_local.shiftwidth = 8
+  vim.opt_local.softtabstop = 8
+  vim.opt_local.tabstop = 8
 else
   vim.opt_local.expandtab = true
   vim.opt_local.shiftwidth = 4

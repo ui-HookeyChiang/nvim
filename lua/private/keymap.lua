@@ -387,3 +387,48 @@ end, { desc = 'Prev comment' })
 map.c('<CR>', function()
   return vim.fn.pumvisible() == 1 and '<C-y><CR>' or '<CR>'
 end, { expr = true })
+
+-- ===========================================================================
+-- Personal overrides (ported from the modules-based fork). Defined last so
+-- they win over glepnir defaults above. Only plugin-agnostic maps and ones
+-- whose plugin (gitsigns) exists are ported; Lspsaga / Smart* / Hop maps are
+-- intentionally dropped since those plugins are not in this config.
+-- ===========================================================================
+map.n({
+  ['<C-w>'] = cmd('write'),
+  ['<C-e>'] = cmd('bd'),
+  [']b'] = cmd('bn'),
+  ['[b'] = cmd('bp'),
+  [']c'] = cmd('cn'),
+  ['[c'] = cmd('cp'),
+  ['<S-Up>'] = cmd('move . -2'),
+  ['<S-Down>'] = cmd('move . +1'),
+  ['<A-b>'] = 'b',
+  ['<A-f>'] = 'e',
+  ['<Leader>j'] = cmd('join!'),
+  -- gitsigns (plugin present)
+  ['<Leader>gs'] = cmd('lua require"gitsigns".stage_hunk()'),
+  ['<Leader>gu'] = cmd('lua require"gitsigns".undo_stage_hunk()'),
+  ['<Leader>gr'] = cmd('lua require"gitsigns".reset_hunk()'),
+  ['<Leader>gp'] = cmd('lua require"gitsigns".preview_hunk()'),
+  ['<Leader>gB'] = cmd('lua require"gitsigns".blame_line()'),
+})
+
+map.v({
+  ['<A-b>'] = 'b',
+  ['<A-f>'] = 'e',
+})
+
+map.i({
+  ['<C-w>'] = '<C-o>diw',
+  ['<C-g>'] = '<C-o>dw',
+  ['<C-d>'] = '<Del>',
+  ['<C-h>'] = '<BS>',
+  ['<C-k>'] = '<C-o>d$',
+  ['<C-j>'] = '<C-o>J',
+  ['<C-u>'] = '<C-o>u',
+  ['<C-r>'] = '<C-o><C-r>',
+  ['<C-a>'] = '<Home>',
+  ['<A-b>'] = '<C-o>b',
+  ['<A-f>'] = '<C-o>e',
+})

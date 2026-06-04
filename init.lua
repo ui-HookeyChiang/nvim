@@ -48,6 +48,16 @@ o.pumborder = 'rounded'
 o.list = true
 --eol:¬
 o.listchars = 'tab:» ,nbsp:+,trail:·,extends:→,precedes:←,'
+
+-- Highlight trailing whitespace with a red background in every window.
+vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg = '#ff6b6b', fg = '#ffffff' })
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  pattern = '*',
+  callback = function()
+    vim.fn.matchadd('TrailingWhitespace', [[\s\+$]])
+  end,
+})
+
 o.fillchars = 'trunc:…'
 o.foldtext = ''
 o.foldlevelstart = 99
@@ -59,7 +69,7 @@ o.expandtab = true
 o.autoindent = true
 o.tabstop = 2
 o.sw = 2
-o.wrap = false
+o.wrap = true
 o.number = true
 o.signcolumn = 'yes'
 o.textwidth = 80
