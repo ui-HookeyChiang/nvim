@@ -37,6 +37,10 @@
     "phoenix.nvim": {
       "rev": "267f88ca76677abc1492df7cd267278472f84f2d",
       "src": "https://github.com/nvimdev/phoenix.nvim"
+    },
+    "tokyonight.nvim": {
+      "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
+      "src": "https://github.com/folke/tokyonight.nvim"
     }
   }
 }

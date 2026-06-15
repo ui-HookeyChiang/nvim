@@ -56,6 +56,7 @@ local function oset(name, value)
 end
 o.hidden = true
 o.magic = true
+o.termguicolors = true
 o.virtualedit = 'block'
 o.clipboard = 'unnamedplus'
 o.wildignorecase = true
@@ -116,7 +117,8 @@ o.cot = 'menu,menuone,noinsert,fuzzy,popup' -- nosort or not???
 o.cia = 'kind,abbr,menu'
 vim.opt.guicursor:remove({ 't:block-blinkon500-blinkoff500-TermCursor' })
 
-vim.cmd.colorscheme('eink')
+vim.cmd.packadd('tokyonight.nvim')
+vim.cmd.colorscheme('tokyonight')
 g.health = { style = 'float' }
 g.editorconfig = false
 g._lang = {
@@ -237,6 +239,7 @@ P:add({
   'nvimdev/phoenix.nvim',
   { src = 'nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
+  'folke/tokyonight.nvim',
 }, { load = false })
   :add('nvimdev/dired.nvim', {
     load = on_cmd('Dired', 'dired.nvim'),
