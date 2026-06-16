@@ -240,6 +240,11 @@ P:add({
   { src = 'nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
   'folke/tokyonight.nvim',
+  'mrjones2014/smart-splits.nvim',
+  'phaazon/hop.nvim',
+  'kylechui/nvim-surround',
+  'NvChad/nvim-colorizer.lua',
+  'booperlv/nvim-gomove',
 }, { load = false })
   :add('nvimdev/dired.nvim', {
     load = on_cmd('Dired', 'dired.nvim'),
@@ -287,5 +292,37 @@ P:add({
       })
       ft('rust'):fmt('rustfmt')
       ft('typescript', 'javascript', 'typescriptreact', 'javascriptreact'):fmt('prettier')
+    end),
+  })
+  :add('mrjones2014/smart-splits.nvim', {
+    load = on_event('UIEnter', 'smart-splits.nvim', function()
+      local ss = require('smart-splits')
+      ss.setup({})
+      vim.keymap.set('n', '<C-h>', ss.move_cursor_left)
+      vim.keymap.set('n', '<C-j>', ss.move_cursor_down)
+      vim.keymap.set('n', '<C-k>', ss.move_cursor_up)
+      vim.keymap.set('n', '<C-l>', ss.move_cursor_right)
+    end),
+  })
+  :add('phaazon/hop.nvim', {
+    load = on_event('BufReadPost', 'hop.nvim', function()
+      require('hop').setup({})
+      vim.keymap.set('n', 'ss', '<cmd>HopChar2<cr>')
+      vim.keymap.set('n', 'sl', '<cmd>HopLine<cr>')
+    end),
+  })
+  :add('kylechui/nvim-surround', {
+    load = on_event('BufReadPost', 'nvim-surround', function()
+      require('nvim-surround').setup({})
+    end),
+  })
+  :add('NvChad/nvim-colorizer.lua', {
+    load = on_event('BufReadPost', 'nvim-colorizer.lua', function()
+      require('colorizer').setup({})
+    end),
+  })
+  :add('booperlv/nvim-gomove', {
+    load = on_event('BufReadPost', 'nvim-gomove', function()
+      require('gomove').setup({})
     end),
   })

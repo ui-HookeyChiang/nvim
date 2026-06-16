@@ -24,6 +24,18 @@
       "rev": "f80414dcabf2ca00bb9f58aac3c55e21e9240717",
       "src": "https://github.com/nvimdev/modeline.nvim"
     },
+    "nvim-colorizer.lua": {
+      "rev": "664c0b7cea1de71f8b65dfe951b7996fc3e6ccde",
+      "src": "https://github.com/NvChad/nvim-colorizer.lua"
+    },
+    "nvim-gomove": {
+      "rev": "2b44ae7ac0804f4e3959228122f7c85bef1964e3",
+      "src": "https://github.com/booperlv/nvim-gomove"
+    },
+    "nvim-surround": {
+      "rev": "8b47db616ef658b8fc27e61db2896aa2f40134de",
+      "src": "https://github.com/kylechui/nvim-surround"
+    },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -37,6 +49,10 @@
     "phoenix.nvim": {
       "rev": "267f88ca76677abc1492df7cd267278472f84f2d",
       "src": "https://github.com/nvimdev/phoenix.nvim"
+    },
+    "smart-splits.nvim": {
+      "rev": "2aad9808f289f5d65cfa77840a04b8590e5e34e9",
+      "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "tokyonight.nvim": {
       "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
