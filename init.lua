@@ -181,7 +181,10 @@ g.phoenix = {
 local P = {}
 
 local function normalize_url(s)
-  return s:match('^https?://') and s or 'https://github.com/' .. s
+  if s:match('^https?://') or s:match('^git@') then
+    return s
+  end
+  return 'git@github.com:' .. s .. '.git'
 end
 
 local function normalize_spec(spec)
@@ -241,7 +244,7 @@ P:add({
   { src = 'nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
   'folke/tokyonight.nvim',
   'mrjones2014/smart-splits.nvim',
-  'phaazon/hop.nvim',
+  'smoka7/hop.nvim',
   'kylechui/nvim-surround',
   'NvChad/nvim-colorizer.lua',
   'booperlv/nvim-gomove',
@@ -304,7 +307,7 @@ P:add({
       vim.keymap.set('n', '<C-l>', ss.move_cursor_right)
     end),
   })
-  :add('phaazon/hop.nvim', {
+  :add('smoka7/hop.nvim', {
     load = on_event('BufReadPost', 'hop.nvim', function()
       require('hop').setup({})
       vim.keymap.set('n', 'ss', '<cmd>HopChar2<cr>')
