@@ -248,6 +248,7 @@ P:add({
   'kylechui/nvim-surround',
   'NvChad/nvim-colorizer.lua',
   'booperlv/nvim-gomove',
+  'ojroques/nvim-osc52',
 }, { load = false })
   :add('nvimdev/dired.nvim', {
     load = on_cmd('Dired', 'dired.nvim'),
@@ -325,5 +326,15 @@ P:add({
   :add('booperlv/nvim-gomove', {
     load = on_event('BufReadPost', 'nvim-gomove', function()
       require('gomove').setup({})
+    end),
+  })
+  :add('ojroques/nvim-osc52', {
+    load = on_event('TextYankPost', 'nvim-osc52', function()
+      local function copy()
+        if vim.v.event.operator == 'y' and vim.v.event.regname == '' then
+          require('osc52').copy_register('"')
+        end
+      end
+      vim.api.nvim_create_autocmd('TextYankPost', { callback = copy })
     end),
   })
