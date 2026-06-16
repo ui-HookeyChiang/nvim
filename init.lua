@@ -58,7 +58,7 @@ o.hidden = true
 o.magic = true
 o.termguicolors = true
 o.virtualedit = 'block'
-o.clipboard = 'unnamedplus'
+-- clipboard set after osc52 loads (see below)
 o.wildignorecase = true
 o.swapfile = false
 o.timeout = true
@@ -329,12 +329,14 @@ P:add({
     end),
   })
   :add('ojroques/nvim-osc52', {
-    load = on_event('TextYankPost', 'nvim-osc52', function()
-      local function copy()
-        if vim.v.event.operator == 'y' and vim.v.event.regname == '' then
-          require('osc52').copy_register('"')
-        end
-      end
-      vim.api.nvim_create_autocmd('TextYankPost', { callback = copy })
+    load = on_event('UIEnter', 'nvim-osc52', function()
+      local osc52 = require('osc52')
+      osc52.setup({ max_length = 0, silent = true, trim = false })
+      vim.g.clipboard = {
+        name = 'osc52',
+        copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*') },
+        paste = { ['+'] = '+', ['*'] = '*' },
+      }
+      vim.o.clipboard = 'unnamedplus'
     end),
   })
