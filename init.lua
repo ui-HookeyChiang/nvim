@@ -58,7 +58,6 @@ o.hidden = true
 o.magic = true
 o.termguicolors = true
 o.virtualedit = 'block'
--- clipboard handled by osc52 provider (set in UIEnter)
 o.wildignorecase = true
 o.swapfile = false
 o.timeout = true
