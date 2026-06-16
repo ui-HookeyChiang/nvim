@@ -309,9 +309,9 @@ P:add({
   })
   :add('folke/flash.nvim', {
     load = on_event('BufReadPost', 'flash.nvim', function()
-      require('flash').setup({})
-      vim.keymap.set({ 'n', 'x', 'o' }, 'ss', function() require('flash').jump() end)
-      vim.keymap.set({ 'n', 'x', 'o' }, 'st', function() require('flash').treesitter() end)
+      require('flash').setup({ modes = { char = { enabled = false } } })
+      vim.keymap.set({ 'n', 'x', 'o' }, 's', function() require('flash').jump() end)
+      vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() require('flash').treesitter() end)
     end),
   })
   :add('kylechui/nvim-surround', {
