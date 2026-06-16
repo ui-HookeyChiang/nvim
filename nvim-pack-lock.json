@@ -4,6 +4,10 @@
       "rev": "83fe371be5e7b6a0fe825c2250d64a4f82a9bd1b",
       "src": "git@github.com:nvimdev/dired.nvim.git"
     },
+    "flash.nvim": {
+      "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
+      "src": "git@github.com:folke/flash.nvim.git"
+    },
     "fzf-lua": {
       "rev": "fea9eedc6894c44d44cbb772a5cd11c93b82d7a1",
       "src": "git@github.com:ibhagwan/fzf-lua.git"

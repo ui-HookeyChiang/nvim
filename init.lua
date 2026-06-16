@@ -244,7 +244,7 @@ P:add({
   { src = 'nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
   'folke/tokyonight.nvim',
   'mrjones2014/smart-splits.nvim',
-  'smoka7/hop.nvim',
+  'folke/flash.nvim',
   'kylechui/nvim-surround',
   'NvChad/nvim-colorizer.lua',
   'booperlv/nvim-gomove',
@@ -300,18 +300,18 @@ P:add({
   :add('mrjones2014/smart-splits.nvim', {
     load = on_event('UIEnter', 'smart-splits.nvim', function()
       local ss = require('smart-splits')
-      ss.setup({})
+      ss.setup({ log_level = 'warn' })
       vim.keymap.set('n', '<C-h>', ss.move_cursor_left)
       vim.keymap.set('n', '<C-j>', ss.move_cursor_down)
       vim.keymap.set('n', '<C-k>', ss.move_cursor_up)
       vim.keymap.set('n', '<C-l>', ss.move_cursor_right)
     end),
   })
-  :add('smoka7/hop.nvim', {
-    load = on_event('BufReadPost', 'hop.nvim', function()
-      require('hop').setup({})
-      vim.keymap.set('n', 'ss', '<cmd>HopChar2<cr>')
-      vim.keymap.set('n', 'sl', '<cmd>HopLine<cr>')
+  :add('folke/flash.nvim', {
+    load = on_event('BufReadPost', 'flash.nvim', function()
+      require('flash').setup({})
+      vim.keymap.set({ 'n', 'x', 'o' }, 'ss', function() require('flash').jump() end)
+      vim.keymap.set({ 'n', 'x', 'o' }, 'st', function() require('flash').treesitter() end)
     end),
   })
   :add('kylechui/nvim-surround', {
