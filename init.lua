@@ -58,7 +58,7 @@ o.hidden = true
 o.magic = true
 o.termguicolors = true
 o.virtualedit = 'block'
--- clipboard=unnamedplus set after osc52 loads to avoid "no provider" on SSH
+-- clipboard handled by osc52 provider (set in UIEnter)
 o.wildignorecase = true
 o.swapfile = false
 o.timeout = true
@@ -330,14 +330,20 @@ P:add({
   })
   :add('ojroques/nvim-osc52', {
     load = on_event('UIEnter', 'nvim-osc52', function()
-      require('osc52').setup({ max_length = 0, silent = true, trim = false, tmux_passthrough = true })
+      local osc52 = require('osc52')
+      osc52.setup({ max_length = 0, silent = true, trim = false, tmux_passthrough = true })
+      local function copy(lines, _)
+        osc52.copy(table.concat(lines, '\n'))
+      end
+      local function paste()
+        return { vim.fn.split(vim.fn.getreg('"'), '\n'), vim.fn.getregtype('"') }
+      end
+      vim.g.clipboard = {
+        name = 'osc52',
+        copy = { ['+'] = copy, ['*'] = copy },
+        paste = { ['+'] = paste, ['*'] = paste },
+        cache_enabled = false,
+      }
       vim.o.clipboard = 'unnamedplus'
-      vim.api.nvim_create_autocmd('TextYankPost', {
-        callback = function()
-          if vim.v.event.operator == 'y' and vim.v.event.regname == '+' then
-            require('osc52').copy_register('+')
-          end
-        end,
-      })
     end),
   })
