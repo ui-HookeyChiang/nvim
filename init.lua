@@ -110,6 +110,7 @@ o.textwidth = 80
 o.colorcolumn = '+0'
 oset('winborder', 'rounded')
 o.splitright = true
+o.clipboard = 'unnamedplus' -- y/d/p use system clipboard (OSC52 over ssh)
 -- reset to 2 in dashboard.lua lnum 273
 o.laststatus = 0
 o.cot = 'menu,menuone,noinsert,fuzzy,popup' -- nosort or not???
@@ -247,7 +248,6 @@ P:add({
   'kylechui/nvim-surround',
   'NvChad/nvim-colorizer.lua',
   'booperlv/nvim-gomove',
-  'ojroques/nvim-osc52',
 }, { load = false })
   :add('nvimdev/dired.nvim', {
     load = on_cmd('Dired', 'dired.nvim'),
@@ -327,4 +327,23 @@ P:add({
       require('gomove').setup({})
     end),
   })
-  :add('ojroques/nvim-osc52', { load = false })
+-- OSC52 clipboard: yank to system clipboard over ssh/tmux via terminal escape.
+-- Uses Neovim's built-in osc52 provider (0.10+); no plugin needed.
+-- Paste returns the in-Neovim register (OSC52 is copy-only by design).
+do
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
+  end
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = { ['+'] = paste, ['*'] = paste },
+  }
+  -- explicit system-clipboard yank/paste (works even without unnamedplus)
+  vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'yank to clipboard (OSC52)' })
+  vim.keymap.set('n', '<leader>Y', '"+Y', { desc = 'yank line to clipboard' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'paste from clipboard' })
+end
