@@ -297,16 +297,8 @@ P:add({
       ft('typescript', 'javascript', 'typescriptreact', 'javascriptreact'):fmt('prettier')
     end),
   })
-  :add('mrjones2014/smart-splits.nvim', {
-    load = on_event('UIEnter', 'smart-splits.nvim', function()
-      local ss = require('smart-splits')
-      ss.setup({ log_level = 'warn' })
-      vim.keymap.set('n', '<C-h>', ss.move_cursor_left)
-      vim.keymap.set('n', '<C-j>', ss.move_cursor_down)
-      vim.keymap.set('n', '<C-k>', ss.move_cursor_up)
-      vim.keymap.set('n', '<C-l>', ss.move_cursor_right)
-    end),
-  })
+  -- smart-splits keymaps live in plugin/events.lua (UIEnter); the re-add
+  -- loader pattern below doesn't fire for already-registered plugins.
   :add('folke/flash.nvim', {
     load = on_event('BufReadPost', 'flash.nvim', function()
       require('flash').setup({})

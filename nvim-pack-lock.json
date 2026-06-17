@@ -24,10 +24,6 @@
       "rev": "addb8d2f40662b8b62d60dd7d18f503beb2332e7",
       "src": "git@github.com:nvimdev/guard.nvim.git"
     },
-    "hop.nvim": {
-      "rev": "707049feaca9ae65abb3696eff9aefc7879e66aa",
-      "src": "git@github.com:smoka7/hop.nvim.git"
-    },
     "modeline.nvim": {
       "rev": "f80414dcabf2ca00bb9f58aac3c55e21e9240717",
       "src": "git@github.com:nvimdev/modeline.nvim.git"
@@ -39,10 +35,6 @@
     "nvim-gomove": {
       "rev": "2b44ae7ac0804f4e3959228122f7c85bef1964e3",
       "src": "git@github.com:booperlv/nvim-gomove.git"
-    },
-    "nvim-osc52": {
-      "rev": "04cfaba1865ae5c53b6f887c3ca7304973824fb2",
-      "src": "git@github.com:ojroques/nvim-osc52.git"
     },
     "nvim-surround": {
       "rev": "8b47db616ef658b8fc27e61db2896aa2f40134de",

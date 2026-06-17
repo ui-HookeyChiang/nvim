@@ -84,11 +84,8 @@ map.n({
   ['<C-n>'] = cmd('bn'),
   ['<C-p>'] = cmd('bp'),
   ['<C-q>'] = cmd('qa!'),
-  --window
-  ['<C-h>'] = '<C-w>h',
-  ['<C-l>'] = '<C-w>l',
-  ['<C-j>'] = '<C-w>j',
-  ['<C-k>'] = '<C-w>k',
+  --window: <C-h/j/k/l> are owned by smart-splits (init.lua) for nvim<->tmux
+  -- seamless navigation; do not rebind here or it clobbers the smart-splits maps.
   ['<A-[>'] = cmd('vertical resize -5'),
   ['<A-]>'] = cmd('vertical resize +5'),
   ['[t'] = cmd('vs | vertical resize -5 | terminal'),

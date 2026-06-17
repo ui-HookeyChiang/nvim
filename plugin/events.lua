@@ -2,12 +2,45 @@ local api = vim.api
 local au = api.nvim_create_autocmd
 local group = api.nvim_create_augroup('_my_events', {})
 
+-- Fallback YankHighlight for schemes that don't define it (e.g. tokyonight).
+-- `default` lets custom colorschemes (vsdark/solarized/eink) keep their override.
+au('ColorScheme', {
+  group = group,
+  callback = function()
+    api.nvim_set_hl(0, 'YankHighlight', { link = 'IncSearch', default = true })
+  end,
+})
+-- colorscheme is set in init.lua before this file is sourced, so set it once now too.
+api.nvim_set_hl(0, 'YankHighlight', { link = 'IncSearch', default = true })
+
 au('TextYankPost', {
   group = group,
   callback = function()
     vim.hl.on_yank({ higroup = 'YankHighlight', timeout = 400 })
   end,
 })
+
+-- tmux fast pane nav: set the @is_vim pane variable so tmux can route
+-- <C-h/j/k/l> to Neovim (smart-splits) without forking `ps` on each keypress.
+-- See ~/.tmux.conf.local (dotfiles). No-op outside tmux.
+if vim.env.TMUX then
+  local function set_is_vim(val)
+    -- fire-and-forget; don't block the UI on the tmux call
+    vim.system({ 'tmux', 'set-option', '-p', '@is_vim', val })
+  end
+  au({ 'VimEnter', 'FocusGained' }, {
+    group = group,
+    callback = function()
+      set_is_vim('1')
+    end,
+  })
+  au({ 'VimLeave', 'FocusLost' }, {
+    group = group,
+    callback = function()
+      set_is_vim('')
+    end,
+  })
+end
 
 au('TermOpen', {
   group = group,
@@ -87,6 +120,19 @@ au('UIEnter', {
       require('private.indent')
       require('private.compile')
 
+      -- smart-splits: nvim<->tmux seamless pane nav. Set here (not via the
+      -- vim.pack re-add loader, which doesn't fire for already-registered
+      -- plugins) so <C-h/j/k/l> reliably bind after private.keymap loads.
+      pcall(function()
+        vim.cmd.packadd('smart-splits.nvim')
+        local ss = require('smart-splits')
+        ss.setup({ log_level = 'warn' })
+        vim.keymap.set('n', '<C-h>', ss.move_cursor_left)
+        vim.keymap.set('n', '<C-j>', ss.move_cursor_down)
+        vim.keymap.set('n', '<C-k>', ss.move_cursor_up)
+        vim.keymap.set('n', '<C-l>', ss.move_cursor_right)
+      end)
+
       if vim.version().minor >= 13 and pcall(require, 'vim._core.ui2') then
         require('vim._core.ui2').enable({ msg = { target = 'cmd' } })
       end
@@ -124,15 +170,6 @@ au('UIEnter', {
 
       vim.cmd.packadd('nohlsearch')
       vim.cmd.packadd('nvim.undotree')
-      vim.cmd.packadd('nvim-osc52')
-      require('osc52').setup({ max_length = 0, silent = true, trim = false, tmux_passthrough = true })
-      api.nvim_create_autocmd('TextYankPost', {
-        callback = function()
-          if vim.v.event.operator == 'y' then
-            require('osc52').copy_register('"')
-          end
-        end,
-      })
     end)
   end,
   desc = 'Initializer',
