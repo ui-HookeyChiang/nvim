@@ -2,45 +2,65 @@
   "plugins": {
     "dired.nvim": {
       "rev": "83fe371be5e7b6a0fe825c2250d64a4f82a9bd1b",
-      "src": "https://github.com/nvimdev/dired.nvim"
+      "src": "git@github.com:nvimdev/dired.nvim.git"
+    },
+    "flash.nvim": {
+      "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
+      "src": "git@github.com:folke/flash.nvim.git"
     },
     "fzf-lua": {
       "rev": "fea9eedc6894c44d44cbb772a5cd11c93b82d7a1",
-      "src": "https://github.com/ibhagwan/fzf-lua"
+      "src": "git@github.com:ibhagwan/fzf-lua.git"
     },
     "gitsigns.nvim": {
       "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
-      "src": "https://github.com/lewis6991/gitsigns.nvim"
+      "src": "git@github.com:lewis6991/gitsigns.nvim.git"
     },
     "guard-collection": {
       "rev": "edf6c86c06badc972964dadb7fd469022690cbf0",
-      "src": "https://github.com/nvimdev/guard-collection"
+      "src": "git@github.com:nvimdev/guard-collection.git"
     },
     "guard.nvim": {
       "rev": "addb8d2f40662b8b62d60dd7d18f503beb2332e7",
-      "src": "https://github.com/nvimdev/guard.nvim"
+      "src": "git@github.com:nvimdev/guard.nvim.git"
     },
     "modeline.nvim": {
       "rev": "f80414dcabf2ca00bb9f58aac3c55e21e9240717",
-      "src": "https://github.com/nvimdev/modeline.nvim"
+      "src": "git@github.com:nvimdev/modeline.nvim.git"
+    },
+    "nvim-colorizer.lua": {
+      "rev": "664c0b7cea1de71f8b65dfe951b7996fc3e6ccde",
+      "src": "git@github.com:NvChad/nvim-colorizer.lua.git"
+    },
+    "nvim-gomove": {
+      "rev": "2b44ae7ac0804f4e3959228122f7c85bef1964e3",
+      "src": "git@github.com:booperlv/nvim-gomove.git"
+    },
+    "nvim-surround": {
+      "rev": "8b47db616ef658b8fc27e61db2896aa2f40134de",
+      "src": "git@github.com:kylechui/nvim-surround.git"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "src": "git@github.com:nvim-treesitter/nvim-treesitter.git",
       "version": "'main'"
     },
     "nvim-treesitter-textobjects": {
       "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+      "src": "git@github.com:nvim-treesitter/nvim-treesitter-textobjects.git",
       "version": "'main'"
     },
     "phoenix.nvim": {
       "rev": "267f88ca76677abc1492df7cd267278472f84f2d",
-      "src": "https://github.com/nvimdev/phoenix.nvim"
+      "src": "git@github.com:nvimdev/phoenix.nvim.git"
+    },
+    "smart-splits.nvim": {
+      "rev": "2aad9808f289f5d65cfa77840a04b8590e5e34e9",
+      "src": "git@github.com:mrjones2014/smart-splits.nvim.git"
     },
     "tokyonight.nvim": {
       "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
-      "src": "https://github.com/folke/tokyonight.nvim"
+      "src": "git@github.com:folke/tokyonight.nvim.git"
     }
   }
 }

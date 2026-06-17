@@ -58,7 +58,6 @@ o.hidden = true
 o.magic = true
 o.termguicolors = true
 o.virtualedit = 'block'
-o.clipboard = 'unnamedplus'
 o.wildignorecase = true
 o.swapfile = false
 o.timeout = true
@@ -111,6 +110,7 @@ o.textwidth = 80
 o.colorcolumn = '+0'
 oset('winborder', 'rounded')
 o.splitright = true
+o.clipboard = 'unnamedplus' -- y/d/p use system clipboard (OSC52 over ssh)
 -- reset to 2 in dashboard.lua lnum 273
 o.laststatus = 0
 o.cot = 'menu,menuone,noinsert,fuzzy,popup' -- nosort or not???
@@ -181,7 +181,10 @@ g.phoenix = {
 local P = {}
 
 local function normalize_url(s)
-  return s:match('^https?://') and s or 'https://github.com/' .. s
+  if s:match('^https?://') or s:match('^git@') then
+    return s
+  end
+  return 'git@github.com:' .. s .. '.git'
 end
 
 local function normalize_spec(spec)
@@ -240,6 +243,11 @@ P:add({
   { src = 'nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
   'folke/tokyonight.nvim',
+  'mrjones2014/smart-splits.nvim',
+  'folke/flash.nvim',
+  'kylechui/nvim-surround',
+  'NvChad/nvim-colorizer.lua',
+  'booperlv/nvim-gomove',
 }, { load = false })
   :add('nvimdev/dired.nvim', {
     load = on_cmd('Dired', 'dired.nvim'),
@@ -289,3 +297,45 @@ P:add({
       ft('typescript', 'javascript', 'typescriptreact', 'javascriptreact'):fmt('prettier')
     end),
   })
+  -- smart-splits keymaps live in plugin/events.lua (UIEnter); the re-add
+  -- loader pattern below doesn't fire for already-registered plugins.
+  :add('folke/flash.nvim', {
+    load = on_event('BufReadPost', 'flash.nvim', function()
+      require('flash').setup({})
+    end),
+  })
+  :add('kylechui/nvim-surround', {
+    load = on_event('BufReadPost', 'nvim-surround', function()
+      require('nvim-surround').setup({})
+    end),
+  })
+  :add('NvChad/nvim-colorizer.lua', {
+    load = on_event('BufReadPost', 'nvim-colorizer.lua', function()
+      require('colorizer').setup({})
+    end),
+  })
+  :add('booperlv/nvim-gomove', {
+    load = on_event('BufReadPost', 'nvim-gomove', function()
+      require('gomove').setup({})
+    end),
+  })
+-- OSC52 clipboard: yank to system clipboard over ssh/tmux via terminal escape.
+-- Uses Neovim's built-in osc52 provider (0.10+); no plugin needed.
+-- Paste returns the in-Neovim register (OSC52 is copy-only by design).
+do
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
+  end
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = { ['+'] = paste, ['*'] = paste },
+  }
+  -- explicit system-clipboard yank/paste (works even without unnamedplus)
+  vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'yank to clipboard (OSC52)' })
+  vim.keymap.set('n', '<leader>Y', '"+Y', { desc = 'yank line to clipboard' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'paste from clipboard' })
+end
