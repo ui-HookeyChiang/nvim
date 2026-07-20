@@ -50,8 +50,9 @@ local o = vim.o
 -- nightly and uses options (pummaxwidth, pumborder, winborder, smoothscroll,
 -- scrolloffpad, ...) that older / stable builds reject with "Unknown option".
 local function oset(name, value)
-  if vim.fn.exists('&' .. name) == 1 then
-    o[name] = value
+  local ok, _ = pcall(function() o[name] = value end)
+  if not ok then
+    -- Option or value not supported in this build; silently skip.
   end
 end
 o.hidden = true
@@ -92,7 +93,7 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   end,
 })
 
-o.fillchars = 'trunc:…'
+oset('fillchars', 'trunc:…')
 o.foldtext = ''
 o.foldlevelstart = 99
 o.undofile = true
@@ -146,33 +147,35 @@ g._lang = {
   'cmake',
 }
 
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    local name, active = ev.data.spec.name, ev.data.active
-    if name == 'nvim-treesitter' then
-      if not active then
-        vim.cmd.packadd('nvim-treesitter')
+if vim.pack then
+  vim.api.nvim_create_autocmd('PackChanged', {
+    callback = function(ev)
+      local name, active = ev.data.spec.name, ev.data.active
+      if name == 'nvim-treesitter' then
+        if not active then
+          vim.cmd.packadd('nvim-treesitter')
+        end
+        local nts = require('nvim-treesitter')
+        nts.install(g.lang, { summary = true })
+        nts.update(nil, { summary = true })
       end
-      local nts = require('nvim-treesitter')
-      nts.install(g.lang, { summary = true })
-      nts.update(nil, { summary = true })
-    end
-  end,
-})
+    end,
+  })
 
-vim.api.nvim_create_user_command('PackDelete', function(args)
-  vim.pack.del(args.fargs, { force = true })
-end, {
-  nargs = '+',
-  complete = function()
-    return vim
-      .iter(vim.pack.get())
-      :map(function(p)
-        return p.spec.name
-      end)
-      :totable()
-  end,
-})
+  vim.api.nvim_create_user_command('PackDelete', function(args)
+    vim.pack.del(args.fargs, { force = true })
+  end, {
+    nargs = '+',
+    complete = function()
+      return vim
+        .iter(vim.pack.get())
+        :map(function(p)
+          return p.spec.name
+        end)
+        :totable()
+    end,
+  })
+end
 
 g.phoenix = {
   snippet = vim.fn.stdpath('config') .. '/snippets',
@@ -231,8 +234,17 @@ local function on_event(events, pkg_name, setup_fn)
 end
 
 function P:add(specs, opts)
-  specs = vim.tbl_map(normalize_spec, ensure_list(specs))
-  vim.pack.add(specs, vim.tbl_extend('keep', opts or {}, { confirm = false }))
+  opts = opts or {}
+  -- Register lazy-load triggers (user commands, autocmds) even without vim.pack,
+  -- since the plugin files may already exist in pack/*/opt/ from a prior install.
+  if type(opts.load) == 'function' then
+    opts.load()
+  end
+  -- Only call vim.pack.add (clone/update repos) when the API exists (nightly).
+  if vim.pack then
+    specs = vim.tbl_map(normalize_spec, ensure_list(specs))
+    vim.pack.add(specs, vim.tbl_extend('keep', opts, { confirm = false }))
+  end
   return self
 end
 
