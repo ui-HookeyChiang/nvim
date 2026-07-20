@@ -314,6 +314,7 @@ map.n({
   ['<Leader>fa'] = cmd('FzfLua live_grep_native'),
   ['<Leader>fs'] = cmd('FzfLua grep_cword'),
   ['<Leader>ff'] = cmd('FzfLua files'),
+  ['<Leader>fw'] = cmd('FzfLua grep_cword'),
   ['<Leader>fh'] = cmd('FzfLua helptags'),
   ['<Leader>fo'] = cmd('FzfLua oldfiles'),
   ['<Leader>fg'] = cmd('FzfLua git_files'),
