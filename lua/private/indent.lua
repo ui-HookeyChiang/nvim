@@ -81,10 +81,15 @@ local function guides(bufnr)
   elseif is_pure_tab(bufnr) then
     -- leadtab requires tab to also be set (E1572), use invisible tab chars
     -- for non-leading tabs so they don't interfere visually.
-    vim.opt_local.listchars:append({
-      tab = '  ',
-      leadtab = opt.char .. ' ',
-    })
+    local ok, _ = pcall(function()
+      vim.opt_local.listchars:append({
+        tab = '  ',
+        leadtab = opt.char .. ' ',
+      })
+    end)
+    if not ok then
+      -- leadtab not supported in this build (nightly-only); silently skip.
+    end
   end
 end
 
